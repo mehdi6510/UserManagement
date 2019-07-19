@@ -1,0 +1,62 @@
+.idea
+*.iws
+*.iml
+*.ipr
+*.exe
+
+backend/.mvn/wrapper/maven-wrapper.jar
+backend/target
+backend/HELP.md
+
+frontend/target
+frontend/src/main/web/node
+frontend/src/main/web/node/node_modules
+frontend/src/main/web/node_modules
+frontend/src/main/web/dist
+frontend/src/main/web/dist/frontendApp
+
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+# compiled output
+/frontend/src/main/web/dist
+/frontend/src/main/web/dist/frontendApp
+frontend/src/main/web/tmp
+frontend/src/main/web/out-tsc
+*/dist
+
+# Only exists if Bazel was run
+frontend/src/main/web/bazel-out
+
+# dependencies
+*/node_modules
+
+# profiling files
+chrome-profiler-events.json
+speed-measure-plugin.json
+
+# misc
+frontend/src/main/web/.sass-cache
+frontend/src/main/web/connect.lock
+frontend/src/main/web/coverage
+frontend/src/main/web/libpeerconnection.log
+npm-debug.log
+yarn-error.log
+testem.log
+frontend/src/main/web/typings
+
+# System Files
+.DS_Store
+Thumbs.db
+
+*/maven-wrapper.jar
+*/maven-wrapper.properties
+*/MavenWrapperDownloader.java
+
+
+
+
+
+
+
+
+
+
