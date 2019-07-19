@@ -12,9 +12,9 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>frontend</artifactId>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
+<!--    <properties>-->
+<!--        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>-->
+<!--    </properties>-->
 
     <build>
         <plugins>
