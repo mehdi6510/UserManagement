@@ -17,8 +17,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findById(Long id) {
-        return userRepository.findById(id).get();
+    public User findById(String id) {
+        User user = userRepository.findById(id).get();
+        System.err.println("find : " + user);
+        return user;
     }
 
     @Override
@@ -28,11 +30,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User save(User user) {
+        System.err.println("Save : " + user);
         return userRepository.save(user);
     }
 
     @Override
-    public void deleteById(Long id) {
+    public void deleteById(String id) {
         userRepository.deleteById(id);
     }
 }

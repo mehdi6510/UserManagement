@@ -10,7 +10,7 @@ import java.util.Objects;
 public class User {
 
     @Id
-    private Long id;
+    private String id;
     private String nationalNumber;
     private String name;
     private String lastName;
@@ -29,8 +29,9 @@ public class User {
     public User() {
     }
 
-    public User(Long id, String nationalNumber, String name, String lastName, String username, String password, String address, String fixedPhone, String cellPhone, Date birthDate, Date registrationDate, int age, int score, char status, char type) {
-        this.id = id;
+    public User(String nationalNumber, String name, String lastName, String username, String password,
+                String address, String fixedPhone, String cellPhone, Date birthDate, Date registrationDate,
+                int age, int score, char status, char type) {
         this.nationalNumber = nationalNumber;
         this.name = name;
         this.lastName = lastName;
@@ -47,11 +48,11 @@ public class User {
         this.type = type;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -191,8 +192,9 @@ public class User {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, nationalNumber, name, lastName, username, password, address, fixedPhone, cellPhone,
-                birthDate, registrationDate, age, score, status, type);
+        return Objects.hash(id, nationalNumber, name, lastName, username,
+                password, address, fixedPhone, cellPhone, birthDate,
+                registrationDate, age, score, status, type);
     }
 
     @Override
