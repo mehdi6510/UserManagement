@@ -1,7 +1,12 @@
 package com.afifi.usermng.model;
 
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.annotation.Version;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 import java.util.Objects;
@@ -13,24 +18,33 @@ public class User {
     private String id;
     private String name;
     private String lastName;
+    @Indexed(unique = true)
     private String username;
     private String password;
     private String cellPhone;
+    @CreatedDate
+    @DateTimeFormat(iso= DateTimeFormat.ISO.DATE_TIME)
     private Date creationDate;
+    @LastModifiedDate
+    @DateTimeFormat(iso= DateTimeFormat.ISO.DATE_TIME)
+    private Date updatingDate;
+    @DateTimeFormat(iso= DateTimeFormat.ISO.DATE_TIME)
+    private Date removingDate;
     private char status;
     private char type;
+    @Version
+    private int version;
 
     public User() {
     }
 
     public User(String name, String lastName, String username, String password,
-                String cellPhone, Date creationDate, char status, char type) {
+                String cellPhone, char status, char type) {
         this.name = name;
         this.lastName = lastName;
         this.username = username;
         this.password = password;
         this.cellPhone = cellPhone;
-        this.creationDate = creationDate;
         this.status = status;
         this.type = type;
     }
@@ -107,6 +121,30 @@ public class User {
         this.type = type;
     }
 
+    public Date getUpdatingDate() {
+        return updatingDate;
+    }
+
+    public void setUpdatingDate(Date updatingDate) {
+        this.updatingDate = updatingDate;
+    }
+
+    public Date getRemovingDate() {
+        return removingDate;
+    }
+
+    public void setRemovingDate(Date removingDate) {
+        this.removingDate = removingDate;
+    }
+
+    public int getVersion() {
+        return version;
+    }
+
+    public void setVersion(int version) {
+        this.version = version;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -114,18 +152,22 @@ public class User {
         User user = (User) o;
         return status == user.status &&
                 type == user.type &&
+                version == user.version &&
                 id.equals(user.id) &&
                 name.equals(user.name) &&
                 lastName.equals(user.lastName) &&
                 username.equals(user.username) &&
                 password.equals(user.password) &&
-                cellPhone.equals(user.cellPhone) &&
-                creationDate.equals(user.creationDate);
+                Objects.equals(cellPhone, user.cellPhone) &&
+                creationDate.equals(user.creationDate) &&
+                Objects.equals(updatingDate, user.updatingDate) &&
+                Objects.equals(removingDate, user.removingDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, lastName, username, password, cellPhone, creationDate, status, type);
+        return Objects.hash(id, name, lastName, username, password, cellPhone,
+                creationDate, updatingDate, removingDate, status, type, version);
     }
 
     @Override
@@ -138,8 +180,11 @@ public class User {
         sb.append(", password='").append(password).append('\'');
         sb.append(", cellPhone='").append(cellPhone).append('\'');
         sb.append(", creationDate=").append(creationDate);
+        sb.append(", updatingDate=").append(updatingDate);
+        sb.append(", removingDate=").append(removingDate);
         sb.append(", status=").append(status);
         sb.append(", type=").append(type);
+        sb.append(", version=").append(version);
         sb.append('}');
         return sb.toString();
     }
