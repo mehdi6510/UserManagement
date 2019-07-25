@@ -3,7 +3,7 @@ package com.afifi.usermng.exception;
 import java.util.Date;
 import java.util.StringJoiner;
 
-class ErrorDetails {
+public class ErrorDetails {
     private Date timestamp;
     private String message;
     private String details;
