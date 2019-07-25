@@ -1,0 +1,6 @@
+spring:
+  profiles.active: dev
+
+#  security:
+#    user.name: test
+#    user.password: test123

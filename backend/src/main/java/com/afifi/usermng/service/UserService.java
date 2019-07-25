@@ -1,5 +1,6 @@
 package com.afifi.usermng.service;
 
+import com.afifi.usermng.exception.ResourceNotFoundException;
 import com.afifi.usermng.model.User;
 
 import java.util.List;
@@ -7,12 +8,14 @@ import java.util.List;
 
 public interface UserService {
 
-    User findById(String id);
+    User findById(String userId) throws ResourceNotFoundException;
 
     List<User> findAll();
 
     User save(User user);
 
-    void deleteById(String id);
+    User update(String userId, User userDetails) throws ResourceNotFoundException;
+
+    void deleteById(String userId) throws ResourceNotFoundException;
 
 }

@@ -1,0 +1,19 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<configuration>
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern>[%d{yyyy-MM-dd'T'HH:mm:ss.sss}] [%C] [%M] [%L] [%-5p] %m%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- custom logging levels -->
+    <logger name="com.afifi.usermng" level="DEBUG"/>
+    <logger name="org.springframework" level="WARN"/>
+
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+    </root>
+
+</configuration>

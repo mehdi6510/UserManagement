@@ -1,15 +1,20 @@
 package com.afifi.usermng.service.impl;
 
+import com.afifi.usermng.exception.ResourceNotFoundException;
 import com.afifi.usermng.model.User;
 import com.afifi.usermng.repository.UserRepository;
 import com.afifi.usermng.service.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
 
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
     private UserRepository userRepository;
 
     public UserServiceImpl(UserRepository userRepository) {
@@ -17,25 +22,61 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findById(String id) {
-        User user = userRepository.findById(id).get();
-        System.err.println("find : " + user);
+    public User findById(String userId) throws ResourceNotFoundException {
+        logger.info("User id : {}", userId);
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found for this id :: " + userId));
+
+        logger.info("User loaded. User : {}", user);
         return user;
     }
 
     @Override
     public List<User> findAll() {
-        return userRepository.findAll();
+        logger.info("Try to load all users.");
+        List<User> users = userRepository.findAll();
+
+        logger.info("Users has been loaded. Size of result : {}", (users != null ? users.size() : 0));
+        logger.debug("Loaded user detail: {}", users);
+        return users;
     }
 
     @Override
     public User save(User user) {
-        System.err.println("Save : " + user);
-        return userRepository.save(user);
+        logger.info("Try to save user : {}", user);
+        userRepository.save(user);
+        logger.info("User saved : {}", user);
+        return user;
     }
 
     @Override
-    public void deleteById(String id) {
-        userRepository.deleteById(id);
+    public User update(String userId, User userDetails) throws ResourceNotFoundException {
+        logger.info("Try to update user with this user id: {} and new detail: {}", userId, userDetails);
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found for this id :: " + userId));
+        logger.info("Existing user data id db has been loaded with this details : {}", user);
+
+        // TODO : using mapper and check usrname and password
+        user.setName(userDetails.getName());
+        user.setLastName(userDetails.getLastName());
+        user.setUsername(userDetails.getUsername());
+        user.setPassword(userDetails.getPassword());
+        user.setCellPhone(userDetails.getCellPhone());
+
+        final User updatedUser = userRepository.save(user);
+        logger.info("User updated with this details : {}", updatedUser);
+        return updatedUser;
     }
+
+    @Override
+    public void deleteById(String userId) throws ResourceNotFoundException {
+        logger.info("Try to delete user with this user id: {}", userId);
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found for this id :: " + userId));
+        logger.info("Existing user has been loaded with this details : {}", user);
+
+        userRepository.delete(user);
+        logger.info("User deleted. Removing Date : {}", new Date());
+    }
+
 }

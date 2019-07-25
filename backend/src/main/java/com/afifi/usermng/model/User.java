@@ -3,15 +3,15 @@ package com.afifi.usermng.model;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.annotation.Version;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 import java.util.Objects;
+import java.util.StringJoiner;
 
-@Document
+@Document(collection = "user")
 public class User {
 
     @Id
@@ -23,30 +23,21 @@ public class User {
     private String password;
     private String cellPhone;
     @CreatedDate
-    @DateTimeFormat(iso= DateTimeFormat.ISO.DATE_TIME)
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private Date creationDate;
     @LastModifiedDate
-    @DateTimeFormat(iso= DateTimeFormat.ISO.DATE_TIME)
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private Date updatingDate;
-    @DateTimeFormat(iso= DateTimeFormat.ISO.DATE_TIME)
-    private Date removingDate;
-    private char status;
-    private char type;
-    @Version
-    private int version;
 
     public User() {
     }
 
-    public User(String name, String lastName, String username, String password,
-                String cellPhone, char status, char type) {
+    public User(String name, String lastName, String username, String password, String cellPhone) {
         this.name = name;
         this.lastName = lastName;
         this.username = username;
         this.password = password;
         this.cellPhone = cellPhone;
-        this.status = status;
-        this.type = type;
     }
 
     public String getId() {
@@ -105,22 +96,6 @@ public class User {
         this.creationDate = creationDate;
     }
 
-    public char getStatus() {
-        return status;
-    }
-
-    public void setStatus(char status) {
-        this.status = status;
-    }
-
-    public char getType() {
-        return type;
-    }
-
-    public void setType(char type) {
-        this.type = type;
-    }
-
     public Date getUpdatingDate() {
         return updatingDate;
     }
@@ -129,64 +104,38 @@ public class User {
         this.updatingDate = updatingDate;
     }
 
-    public Date getRemovingDate() {
-        return removingDate;
-    }
-
-    public void setRemovingDate(Date removingDate) {
-        this.removingDate = removingDate;
-    }
-
-    public int getVersion() {
-        return version;
-    }
-
-    public void setVersion(int version) {
-        this.version = version;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return status == user.status &&
-                type == user.type &&
-                version == user.version &&
-                id.equals(user.id) &&
+        return id.equals(user.id) &&
                 name.equals(user.name) &&
                 lastName.equals(user.lastName) &&
                 username.equals(user.username) &&
                 password.equals(user.password) &&
                 Objects.equals(cellPhone, user.cellPhone) &&
                 creationDate.equals(user.creationDate) &&
-                Objects.equals(updatingDate, user.updatingDate) &&
-                Objects.equals(removingDate, user.removingDate);
+                Objects.equals(updatingDate, user.updatingDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, lastName, username, password, cellPhone,
-                creationDate, updatingDate, removingDate, status, type, version);
+        return Objects.hash(id, name, lastName, username, password, cellPhone, creationDate, updatingDate);
     }
+
 
     @Override
     public String toString() {
-        final StringBuffer sb = new StringBuffer("User{");
-        sb.append("id='").append(id).append('\'');
-        sb.append(", name='").append(name).append('\'');
-        sb.append(", lastName='").append(lastName).append('\'');
-        sb.append(", username='").append(username).append('\'');
-        sb.append(", password='").append(password).append('\'');
-        sb.append(", cellPhone='").append(cellPhone).append('\'');
-        sb.append(", creationDate=").append(creationDate);
-        sb.append(", updatingDate=").append(updatingDate);
-        sb.append(", removingDate=").append(removingDate);
-        sb.append(", status=").append(status);
-        sb.append(", type=").append(type);
-        sb.append(", version=").append(version);
-        sb.append('}');
-        return sb.toString();
+        return new StringJoiner(", ", User.class.getSimpleName() + "[", "]")
+                .add("id='" + id + "'")
+                .add("name='" + name + "'")
+                .add("lastName='" + lastName + "'")
+                .add("username='" + username + "'")
+                .add("password='" + password + "'")
+                .add("cellPhone='" + cellPhone + "'")
+                .add("creationDate=" + creationDate)
+                .add("updatingDate=" + updatingDate)
+                .toString();
     }
-
 }

@@ -1,12 +1,19 @@
 package com.afifi.usermng.controller;
 
+import com.afifi.usermng.exception.ResourceNotFoundException;
 import com.afifi.usermng.model.User;
 import com.afifi.usermng.service.UserService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
+@RequestMapping("/usermanagement/api")
 public class UserController {
 
     private UserService userService;
@@ -15,9 +22,9 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping(value = "/user/{id}")
-    public User getUserById(@PathVariable String id) {
-        return userService.findById(id);
+    @GetMapping(value = "/users/{id}")
+    public ResponseEntity<User> getUserById(@PathVariable(value = "id") String userId) throws ResourceNotFoundException {
+        return ResponseEntity.ok().body(userService.findById(userId));
     }
 
     @GetMapping(value = "/users")
@@ -25,14 +32,24 @@ public class UserController {
         return userService.findAll();
     }
 
-    @PostMapping(value = "/save")
-    public User createUser(@RequestBody User user) {
+    @PostMapping(value = "/users")
+    public User createUser(@Valid @RequestBody User user) {
         return userService.save(user);
     }
 
-    @PostMapping(value = "/delete/{id}")
-    public void deleteUser(@PathVariable String id) {
-        userService.deleteById(id);
+    @PutMapping(value = "/users/{id}")
+    public ResponseEntity<User> updateUser(@PathVariable(value = "id") String userId, @Valid @RequestBody User userDetails)
+            throws ResourceNotFoundException {
+        return ResponseEntity.ok(userService.update(userId, userDetails));
+    }
+
+    @DeleteMapping(value = "/users/{id}")
+    public Map<String, Boolean> deleteUser(@PathVariable(value = "id") String userId) throws ResourceNotFoundException {
+        userService.deleteById(userId);
+
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("deleted", Boolean.TRUE);
+        return response;
     }
 
 }
