@@ -57,11 +57,12 @@ public class UserServiceImpl implements UserService {
         logger.info("Existing user data id db has been loaded with this details : {}", user);
 
         // TODO : using mapper and check usrname and password
-        user.setName(userDetails.getName());
+        user.setFirstName(userDetails.getFirstName());
         user.setLastName(userDetails.getLastName());
         user.setUsername(userDetails.getUsername());
         user.setPassword(userDetails.getPassword());
         user.setCellPhone(userDetails.getCellPhone());
+        user.setEmail(userDetails.getEmail());
 
         final User updatedUser = userRepository.save(user);
         logger.info("User updated with this details : {}", updatedUser);

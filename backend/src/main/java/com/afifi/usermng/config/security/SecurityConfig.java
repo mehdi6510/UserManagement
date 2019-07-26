@@ -5,10 +5,10 @@ package com.afifi.usermng.config.security;
 //import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 //import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 //import org.springframework.security.web.access.channel.ChannelProcessingFilter;
-
+//
 //@EnableWebSecurity
 //@Configuration
-//public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+//public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //
 //    @Override
 //    protected void configure(HttpSecurity httpSecurity) throws Exception {
