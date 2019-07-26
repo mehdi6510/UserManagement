@@ -10,6 +10,15 @@
   text-align: center;
   color: white;
 }
-.footer margin-top {
+
+.footer .margin-top {
   margin-top: 20px;
+}
+
+.content-margin-top {
+  margin-top: 10px;
+}
+
+.txt-mrgn-btm {
+  margin-bottom: 1rem
 }

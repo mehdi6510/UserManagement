@@ -7,14 +7,12 @@ import {Router} from '@angular/router';
 @Component({
   selector: "app-user-list",
   templateUrl: "./user-list.component.html"
-  //styleUrls: ["../../../css/user-list.component.css"]
 })
 export class UserListComponent implements OnInit {
 
   users: Observable<User[]>;
 
   constructor(private userService: UsersService, private router: Router) {
-
   }
 
   ngOnInit() {
@@ -38,4 +36,9 @@ export class UserListComponent implements OnInit {
   userDetails(id: string){
     this.router.navigate(['details', id]);
   }
+
+  updateUser(id: string) {
+    this.router.navigate(['update', id]);
+  }
+
 }

@@ -1,34 +1,51 @@
 <h3>Create User</h3>
-<div [hidden]="submitted" style="width: 400px;">
-  <form (ngSubmit)="onSubmit()">
+<form (ngSubmit)="onSubmit()">
+  <div class="row">
+    <div [hidden]="submitted" class="col-xs-12 col-md-6 col-lg-4">
 
-    <div class="form-group">
-      <input type="text" placeholder="First Name" class="form-control" id="firstName" required [(ngModel)]="user.firstName" name="name">
+      <div class="txt-mrgn-btm">
+        <input type="text" placeholder="First Name" class="form-control" id="firstName" required
+               [(ngModel)]="user.firstName" name="name">
+      </div>
+
+      <div class="txt-mrgn-btm">
+        <input type="text" placeholder="Last Name" class="form-control" id="lastName" required
+               [(ngModel)]="user.lastName" name="lastName">
+      </div>
+
+      <div class="txt-mrgn-btm">
+        <input type="text" placeholder="Cell Phone" class="form-control" id="cellPhone"
+               [(ngModel)]="user.cellPhone" name="cellPhone">
+      </div>
+
+      <div class="txt-mrgn-btm">
+        <input type="text" placeholder="Email" class="form-control" id="email" required [(ngModel)]="user.email"
+               name="email">
+      </div>
+
+      <div class="txt-mrgn-btm">
+        <input type="text" placeholder="Username" class="form-control" id="username" required
+               [(ngModel)]="user.username"
+               name="username">
+      </div>
+
+      <div class="txt-mrgn-btm">
+        <input type="password" placeholder="Password" class="form-control" id="password" required
+               [(ngModel)]="user.password" name="password">
+      </div>
+
+      <div class="txt-mrgn-btm">
+        <input type="password" placeholder="Reenter Password" class="form-control" id="reenterPass" required
+               [(ngModel)]="reenterPass" name="reenterPass">
+      </div>
+
+      <div class="txt-mrgn-btm">
+        <button type="submit" class="btn btn-success">Submit</button>
+      </div>
+
     </div>
-
-    <div class="form-group">
-      <input type="text" placeholder="Last Name" class="form-control" id="lastName" required [(ngModel)]="user.lastName" name="lastName">
-    </div>
-
-    <div class="form-group">
-      <input type="text" placeholder="Cell Phone" class="form-control" id="cellPhone" required [(ngModel)]="user.cellPhone" name="cellPhone">
-    </div>
-
-    <div class="form-group">
-      <input type="text" placeholder="Email" class="form-control" id="email" required [(ngModel)]="user.email" name="email">
-    </div>
-
-    <div class="form-group">
-      <input type="text" placeholder="Username" class="form-control" id="username" required [(ngModel)]="user.username" name="username">
-    </div>
-
-    <div class="form-group">
-      <input type="password" placeholder="Password" class="form-control" id="password" required [(ngModel)]="user.password" name="password">
-    </div>
-
-    <button type="submit" class="btn btn-success">Submit</button>
-  </form>
-</div>
+  </div>
+</form>
 
 <div [hidden]="!submitted">
   <h4>You submitted successfully!</h4>

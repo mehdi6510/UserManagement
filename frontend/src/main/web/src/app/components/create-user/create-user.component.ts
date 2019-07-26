@@ -6,11 +6,11 @@ import {Router} from '@angular/router';
 @Component({
   selector: 'app-create-user',
   templateUrl: './create-user.component.html'
-  // styleUrls: ['../../../css/create-user.component.css']
 })
 export class CreateUserComponent implements OnInit {
 
   user: User = new User();
+  reenterPass: string;
   submitted = false;
 
   constructor(private userService: UsersService, private router: Router) {
@@ -26,10 +26,14 @@ export class CreateUserComponent implements OnInit {
 
   save() {
     this.userService.createUser(this.user)
-      .subscribe(data => console.log(data), error => console.log(error));
-    this.user = new User();
-
-    this.gotoList();
+      .subscribe(data => {
+          console.log(data);
+          this.newUser();
+          this.gotoList();
+        },
+        error => {
+          console.log(error)
+        });
   }
 
   onSubmit() {

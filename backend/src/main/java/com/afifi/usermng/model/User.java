@@ -7,6 +7,7 @@ import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.Objects;
 import java.util.StringJoiner;
@@ -16,13 +17,26 @@ public class User {
 
     @Id
     private String id;
+
+    @NotNull(message = "First Name is mandatory")
     private String firstName;
+
+    @NotNull(message = "Last Name is mandatory")
     private String lastName;
+
     @Indexed(unique = true)
+    @NotNull(message = "Username is mandatory")
     private String username;
+
+    @NotNull(message = "Password is mandatory")
     private String password;
-    private String cellPhone;
+
+    @Indexed(unique = true)
+    @NotNull(message = "Email is mandatory")
     private String email;
+
+    private String cellPhone;
+
     @CreatedDate
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private Date creationDate;
@@ -115,6 +129,21 @@ public class User {
     }
 
     @Override
+    public String toString() {
+        return new StringJoiner(", ", User.class.getSimpleName() + "[", "]")
+                .add("id='" + id + "'")
+                .add("firstName='" + firstName + "'")
+                .add("lastName='" + lastName + "'")
+                .add("username='" + username + "'")
+                .add("password='" + password + "'")
+                .add("email='" + email + "'")
+                .add("cellPhone='" + cellPhone + "'")
+                .add("creationDate=" + creationDate)
+                .add("updatingDate=" + updatingDate)
+                .toString();
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -124,31 +153,15 @@ public class User {
                 lastName.equals(user.lastName) &&
                 username.equals(user.username) &&
                 password.equals(user.password) &&
+                email.equals(user.email) &&
                 Objects.equals(cellPhone, user.cellPhone) &&
-                Objects.equals(email, user.email) &&
                 creationDate.equals(user.creationDate) &&
-                Objects.equals(updatingDate, user.updatingDate);
+                updatingDate.equals(user.updatingDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstName, lastName, username, password,
-                cellPhone, email, creationDate, updatingDate);
-    }
-
-
-    @Override
-    public String toString() {
-        return new StringJoiner(", ", User.class.getSimpleName() + "[", "]")
-                .add("id='" + id + "'")
-                .add("firstName='" + firstName + "'")
-                .add("lastName='" + lastName + "'")
-                .add("username='" + username + "'")
-                .add("password='" + password + "'")
-                .add("cellPhone='" + cellPhone + "'")
-                .add("email='" + email + "'")
-                .add("creationDate=" + creationDate)
-                .add("updatingDate=" + updatingDate)
-                .toString();
+        return Objects.hash(id, firstName, lastName, username, password, email, cellPhone,
+                creationDate, updatingDate);
     }
 }

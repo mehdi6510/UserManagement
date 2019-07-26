@@ -8,11 +8,13 @@ import {AppComponent} from './app.component';
 import {CreateUserComponent} from './components/create-user/create-user.component';
 import {UserDetailsComponent} from './components/user-details/user-details.component';
 import {UserListComponent} from './components/user-list/user-list.component';
+import {UpdateUserComponent} from "./components/update-user/update-user.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     CreateUserComponent,
+    UpdateUserComponent,
     UserDetailsComponent,
     UserListComponent
   ],

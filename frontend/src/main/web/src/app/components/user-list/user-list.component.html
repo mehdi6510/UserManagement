@@ -9,9 +9,7 @@
         <th>First Name</th>
         <th>Last Name</th>
         <th>Username</th>
-        <th>Cell phone</th>
-        <th>Email</th>
-        <th style="alignment: center !important;">Actions</th>
+        <th>Actions</th>
       </tr>
       </thead>
       <tbody>
@@ -19,11 +17,9 @@
         <td>{{user.firstName}}</td>
         <td>{{user.lastName}}</td>
         <td>{{user.username}}</td>
-        <td>{{user.cellPhone}}</td>
-        <td>{{user.email}}</td>
         <td>
           <button (click)="userDetails(user.id)" class="btn btn-info" style="margin-right: 10px">Details</button>
-          <button (click)="(user.id)" class="btn btn-primary" style="margin-right: 10px">Update</button>
+          <button (click)="updateUser(user.id)" class="btn btn-primary" style="margin-right: 10px">Update</button>
           <button (click)="deleteUser(user.id)" class="btn btn-danger">Delete</button>
         </td>
       </tr>
