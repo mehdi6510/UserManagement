@@ -1,5 +1,5 @@
-spring:
-  data.mongodb:
-    uri: mongodb://localhost:27017/user_management
-    username: admin
-    password: Ma12345!@#$%
+#spring:
+#  data.mongodb:
+#    uri: mongodb://localhost:27017/
+#    username: admin
+#    password: Ma12345!@#$%
