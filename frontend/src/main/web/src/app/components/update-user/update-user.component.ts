@@ -10,7 +10,7 @@ import {User} from "../../model/User";
 export class UpdateUserComponent implements OnInit {
   id: string;
   user: User;
-  reenterPass: string;
+  confirmPassword: string;
   submitted = false;
 
   constructor(private route: ActivatedRoute, private router: Router, private userService: UsersService,) {
@@ -49,6 +49,11 @@ export class UpdateUserComponent implements OnInit {
 
   gotoList() {
     this.router.navigate(['/users']);
+  }
+
+  onReset() {
+    this.submitted = false;
+    this.router.navigate(['users']);
   }
 
 }

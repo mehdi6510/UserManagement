@@ -2,6 +2,8 @@ import {UsersService} from '../../services/users.service';
 import {User} from '../../model/user';
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {MustMatch} from "../../util/validation-util";
 
 @Component({
   selector: 'app-create-user',
@@ -10,7 +12,7 @@ import {Router} from '@angular/router';
 export class CreateUserComponent implements OnInit {
 
   user: User = new User();
-  reenterPass: string;
+  confirmPassword: string;
   submitted = false;
 
   constructor(private userService: UsersService, private router: Router) {
@@ -32,7 +34,8 @@ export class CreateUserComponent implements OnInit {
           this.gotoList();
         },
         error => {
-          console.log(error)
+          window.alert(error);
+          console.log(error);
         });
   }
 
@@ -44,4 +47,11 @@ export class CreateUserComponent implements OnInit {
   gotoList() {
     this.router.navigate(['/users']);
   }
+
+  onReset() {
+    this.submitted = false;
+    //this.registerForm.reset();
+    this.router.navigate(['users']);
+  }
+
 }

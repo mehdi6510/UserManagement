@@ -1,5 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import './bootstrap.min.css';
+@import './bootstrap-grid.min.css';
+@import './bootstrap-reboot.min.css';
 
 .footer {
   position: absolute;
@@ -20,5 +22,6 @@
 }
 
 .txt-mrgn-btm {
-  margin-bottom: 1rem
+  margin-bottom: 1rem;
+  margin-right: 0px !important;
 }
