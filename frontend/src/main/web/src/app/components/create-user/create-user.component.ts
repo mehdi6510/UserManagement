@@ -13,12 +13,31 @@ export class CreateUserComponent implements OnInit {
 
   user: User = new User();
   confirmPassword: string;
+  registerForm: FormGroup;
   submitted = false;
 
-  constructor(private userService: UsersService, private router: Router) {
+  constructor(private userService: UsersService, private router: Router, private formBuilder: FormBuilder) {
   }
 
   ngOnInit() {
+    this.newUser();
+
+    this.registerForm = this.formBuilder.group({
+      title: ['', Validators.required],
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      username: ['', [Validators.required, Validators.minLength(6)]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      confirmPassword: ['', Validators.required],
+    }, {
+      validator: MustMatch('password', 'confirmPassword')
+      //cellPhone: ['', [Validators.required, Validators.pattern("09(1[0-9]|3[1-9]|2[1-9])-?[0-9]{3}-?[0-9]{4}")]],
+    });
+  }
+
+  get f() {
+    return this.registerForm.controls;
   }
 
   newUser(): void {
@@ -27,10 +46,14 @@ export class CreateUserComponent implements OnInit {
   }
 
   save() {
+    //stop here if form is invalid
+    if (this.registerForm.invalid) {
+      return;
+    }
+
     this.userService.createUser(this.user)
       .subscribe(data => {
           console.log(data);
-          this.newUser();
           this.gotoList();
         },
         error => {
@@ -49,9 +72,8 @@ export class CreateUserComponent implements OnInit {
   }
 
   onReset() {
-    this.submitted = false;
-    //this.registerForm.reset();
-    this.router.navigate(['users']);
+    this.registerForm.reset();
+    this.gotoList();
   }
 
 }

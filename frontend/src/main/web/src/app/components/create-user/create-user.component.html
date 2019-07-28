@@ -1,42 +1,82 @@
 <h3>Create User</h3>
-<form (ngSubmit)="onSubmit()">
-  <div class="row">
-    <div [hidden]="submitted" class="col-xs-12 col-md-6 col-lg-4">
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-md-6 col-lg-4">
 
-      <div class="txt-mrgn-btm">
-        <input type="text" placeholder="First Name" class="form-control" id="firstName" required
-               [(ngModel)]="user.firstName" name="name">
-      </div>
+        <div class="form-group">
+          <select formControlName="title" class="form-control"
+                  [ngClass]="{ 'is-invalid': submitted && f.title.errors }">
+            <option value="" disabled selected>Title</option>
+            <option value="Mr">Mr</option>
+            <option value="Mrs">Mrs</option>
+            <option value="Miss">Miss</option>
+            <option value="Ms">Ms</option>
+          </select>
+          <div *ngIf="submitted && f.title.errors" class="invalid-feedback">
+            <div *ngIf="f.title.errors.required">Title is required</div>
+          </div>
+        </div>
 
-      <div class="txt-mrgn-btm">
-        <input type="text" placeholder="Last Name" class="form-control" id="lastName" required
-               [(ngModel)]="user.lastName" name="lastName">
-      </div>
+        <div class="form-group">
+          <input type="text" placeholder="First Name" formControlName="firstName" class="form-control"
+                 [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }"/>
+          <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+            <div *ngIf="f.firstName.errors.required">First Name is required</div>
+          </div>
+        </div>
 
-      <div class="txt-mrgn-btm">
-        <input type="text" placeholder="Cell Phone" class="form-control" id="cellPhone"
-               [(ngModel)]="user.cellPhone" name="cellPhone">
-      </div>
+        <div class="form-group">
+          <input type="text" placeholder="Last Name" formControlName="lastName" class="form-control"
+                 [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }"/>
+          <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+            <div *ngIf="f.lastName.errors.required">Last Name is required</div>
+          </div>
+        </div>
 
-      <div class="txt-mrgn-btm">
-        <input type="text" placeholder="Email" class="form-control" id="email" required [(ngModel)]="user.email"
-               name="email">
-      </div>
+        <div class="form-group">
+          <input type="text" placeholder="Cell Phone" formName="cellPhone" class="form-control"/>
+        </div>
 
-      <div class="txt-mrgn-btm">
-        <input type="text" placeholder="Username" class="form-control" id="username" required
-               [(ngModel)]="user.username"
-               name="username">
-      </div>
+        <div class="form-group">
+          <input type="text" placeholder="Email" formControlName="email" class="form-control"
+                 [ngClass]="{ 'is-invalid': submitted && f.email.errors }"/>
+          <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+            <div *ngIf="f.email.errors.required">Email is required</div>
+            <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+          </div>
+        </div>
 
-      <div class="txt-mrgn-btm">
-        <input type="password" placeholder="Password" class="form-control" id="password" required
-               [(ngModel)]="user.password" name="password">
-      </div>
+        <div class="form-group">
+          <input type="text" placeholder="Username" formControlName="username" class="form-control"
+                 [ngClass]="{ 'is-invalid': submitted && f.username.errors }"/>
+          <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+            <div *ngIf="f.username.errors.required">Username is required</div>
+            <div *ngIf="f.username.errors.minlength">Username must be at least 6 characters</div>
+          </div>
+        </div>
 
-        <div class="txt-mrgn-btm">
-          <input type="password" placeholder="Confirm Password" class="form-control" id="confirmPassword" required
-                 [(ngModel)]="confirmPassword" name="confirmPassword">
+        <div class="form-group">
+          <input type="password" placeholder="Password" formControlName="password" class="form-control"
+                 [ngClass]="{ 'is-invalid': submitted && f.password.errors }"/>
+          <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+            <div *ngIf="f.password.errors.required">Password is required</div>
+            <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <input type="password" placeholder="Confirm Password" formControlName="confirmPassword" class="form-control"
+                 [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }"/>
+          <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
+            <div *ngIf="f.confirmPassword.errors.required">Confirm Password is required</div>
+            <div *ngIf="f.confirmPassword.errors.mustMatch">Passwords must match</div>
+          </div>
+        </div>
+
+        <div class="form-group form-check">
+          <input type="checkbox" formName="isAdmin" id="isAdmin" class="form-check-input"/>
+          <label for="isAdmin" class="form-check-label">Admin</label>
         </div>
 
         <div class="row txt-mrgn-btm">
@@ -48,6 +88,7 @@
           </div>
         </div>
 
-<div [hidden]="!submitted">
-  <h4>You submitted successfully!</h4>
-</div>
+      </div>
+    </div>
+  </div>
+</form>
