@@ -23,11 +23,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User findById(String userId) throws ResourceNotFoundException {
-        logger.info("User id : {}", userId);
+        logger.info("Try to find user with this id : {}", userId);
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found for this id :: " + userId));
 
-        logger.info("User loaded. User : {}", user);
+        logger.info("User loaded. User id : {}", userId);
+        logger.debug("Loaded user detail: {}", user);
         return user;
     }
 
@@ -37,7 +38,7 @@ public class UserServiceImpl implements UserService {
         List<User> users = userRepository.findAll();
 
         logger.info("Users has been loaded. Size of result : {}", (users != null ? users.size() : 0));
-        logger.debug("Loaded user detail: {}", users);
+        logger.debug("Loaded users detail: {}", users);
         return users;
     }
 

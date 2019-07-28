@@ -7,7 +7,10 @@ import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Date;
 import java.util.Objects;
 import java.util.StringJoiner;
@@ -19,22 +22,30 @@ public class User {
     private String id;
 
     @NotNull(message = "First Name is mandatory")
+    @Size(min=2, message="First Name should have atleast 2 characters")
     private String firstName;
 
     @NotNull(message = "Last Name is mandatory")
+    @Size(min=2, message="Last Name should have atleast 2 characters")
     private String lastName;
 
     @Indexed(unique = true)
     @NotNull(message = "Username is mandatory")
+    @Size(min=6, message="Username should have atleast 6 characters")
     private String username;
 
     @NotNull(message = "Password is mandatory")
+    @Size(min=6, message="Password should have atleast 6 characters")
     private String password;
 
     @Indexed(unique = true)
     @NotNull(message = "Email is mandatory")
+    @Size(min=3, message="Email should have atleast 3 characters")
+    @Email
     private String email;
 
+    @Digits(integer=11, fraction=0)
+    @Size(min=11, message="Cell Phone should have atleast 11 characters")
     private String cellPhone;
 
     @CreatedDate
