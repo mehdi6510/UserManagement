@@ -9,6 +9,7 @@ import {CreateUserComponent} from './components/create-user/create-user.componen
 import {UserDetailsComponent} from './components/user-details/user-details.component';
 import {UserListComponent} from './components/user-list/user-list.component';
 import {UpdateUserComponent} from "./components/update-user/update-user.component";
+import {ExceptionComponent} from "./components/exception/exception.component";
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import {UpdateUserComponent} from "./components/update-user/update-user.componen
     CreateUserComponent,
     UpdateUserComponent,
     UserDetailsComponent,
-    UserListComponent
+    UserListComponent,
+    ExceptionComponent
   ],
   imports: [
     BrowserModule,

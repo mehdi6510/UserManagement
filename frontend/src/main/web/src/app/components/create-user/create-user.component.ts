@@ -13,6 +13,7 @@ export class CreateUserComponent implements OnInit {
   confirmPassword: string;
   registerForm: FormGroup;
   submitted = false;
+  error: string = '';
 
   constructor(private userService: UsersService, private router: Router, private formBuilder: FormBuilder) {
   }
@@ -53,10 +54,16 @@ export class CreateUserComponent implements OnInit {
       .subscribe(data => {
           console.log(data);
           this.gotoList();
-        },
-        error => {
-          window.alert(error);
+
+        }, error => {
           console.log(error);
+          if (error.error instanceof Array) {
+            for (let err of error.error) {
+              this.error += `${err.message}.\n`;
+            }
+          } else {
+            this.error = `${error.error.message}`;
+          }
         });
   }
 

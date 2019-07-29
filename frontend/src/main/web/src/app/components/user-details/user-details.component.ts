@@ -11,6 +11,7 @@ export class UserDetailsComponent implements OnInit {
 
   id: string;
   user: User;
+  error: string = '';
 
   constructor(private route: ActivatedRoute, private router: Router,
               private userService: UsersService) {
@@ -25,7 +26,11 @@ export class UserDetailsComponent implements OnInit {
       .subscribe(data => {
         console.log(data);
         this.user = data;
-      }, error => console.log(error));
+
+      }, error => {
+        console.log(error);
+        this.error = `${error.error.message}`;
+      });
   }
 
   list() {
