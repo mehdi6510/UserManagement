@@ -6,17 +6,21 @@
     <table class="table table-striped">
       <thead>
       <tr>
+        <th>Title</th>
         <th>First Name</th>
         <th>Last Name</th>
         <th>Username</th>
+        <th>Is A Admin</th>
         <th>Actions</th>
       </tr>
       </thead>
       <tbody>
       <tr *ngFor="let user of users | async">
+        <td>{{user.title}}</td>
         <td>{{user.firstName}}</td>
         <td>{{user.lastName}}</td>
         <td>{{user.username}}</td>
+        <td>{{user.isAdmin}}</td>
         <td>
           <button (click)="userDetails(user.id)" class="btn btn-info" style="margin-right: 10px">Details</button>
           <button (click)="updateUser(user.id)" class="btn btn-primary" style="margin-right: 10px">Update</button>

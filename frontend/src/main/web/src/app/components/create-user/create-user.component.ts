@@ -2,7 +2,7 @@ import {UsersService} from '../../services/users.service';
 import {User} from '../../model/user';
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {MustMatch} from "../../util/validation-util";
 
 @Component({
@@ -23,16 +23,17 @@ export class CreateUserComponent implements OnInit {
     this.newUser();
 
     this.registerForm = this.formBuilder.group({
-      title: ['', Validators.required],
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      username: ['', [Validators.required, Validators.minLength(6)]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', Validators.required],
+      title: new FormControl('', [Validators.required]),
+      firstName: new FormControl('', [Validators.required, Validators.minLength(2)]),
+      lastName: new FormControl('', [Validators.required, Validators.minLength(2)]),
+      cellPhone: new FormControl('', [Validators.pattern('09(1[0-9]|3[1-9]|2[1-9])-?[0-9]{3}-?[0-9]{4}')]),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      username: new FormControl('', [Validators.required, Validators.minLength(6)]),
+      password: new FormControl('', [Validators.required, Validators.minLength(6)]),
+      confirmPassword: new FormControl('', [Validators.required, Validators.minLength(6)]),
+      isAdmin: new FormControl(false)
     }, {
-      validator: MustMatch('password', 'confirmPassword')
-      //cellPhone: ['', [Validators.required, Validators.pattern("09(1[0-9]|3[1-9]|2[1-9])-?[0-9]{3}-?[0-9]{4}")]],
+      validators: [MustMatch('password', 'confirmPassword')]
     });
   }
 

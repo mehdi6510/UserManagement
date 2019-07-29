@@ -21,31 +21,37 @@ public class User {
     @Id
     private String id;
 
+    @NotNull(message = "Title is mandatory")
+    @Size(min = 2, message = "Title should have atleast 2 characters")
+    private String title;
+
     @NotNull(message = "First Name is mandatory")
-    @Size(min=2, message="First Name should have atleast 2 characters")
+    @Size(min = 2, message = "First Name should have atleast 2 characters")
     private String firstName;
 
     @NotNull(message = "Last Name is mandatory")
-    @Size(min=2, message="Last Name should have atleast 2 characters")
+    @Size(min = 2, message = "Last Name should have atleast 2 characters")
     private String lastName;
 
     @Indexed(unique = true)
     @NotNull(message = "Username is mandatory")
-    @Size(min=6, message="Username should have atleast 6 characters")
+    @Size(min = 6, message = "Username should have atleast 6 characters")
     private String username;
 
     @NotNull(message = "Password is mandatory")
-    @Size(min=6, message="Password should have atleast 6 characters")
+    @Size(min = 6, message = "Password should have atleast 6 characters")
     private String password;
 
     @Indexed(unique = true)
     @NotNull(message = "Email is mandatory")
-    @Size(min=3, message="Email should have atleast 3 characters")
+    @Size(min = 3, message = "Email should have atleast 3 characters")
     @Email
     private String email;
 
-    @Digits(integer=11, fraction=0)
-    @Size(min=11, message="Cell Phone should have atleast 11 characters")
+    private boolean isAdmin;
+
+    @Digits(integer = 11, fraction = 0)
+    @Size(min = 11, message = "Cell Phone should have atleast 11 characters")
     private String cellPhone;
 
     @CreatedDate
@@ -56,6 +62,24 @@ public class User {
     private Date updatingDate;
 
     public User() {
+    }
+
+    public User(@NotNull(message = "Title is mandatory") @Size(min = 2, message = "Title should have atleast 2 characters") String title,
+                @NotNull(message = "First Name is mandatory") @Size(min = 2, message = "First Name should have atleast 2 characters") String firstName,
+                @NotNull(message = "Last Name is mandatory") @Size(min = 2, message = "Last Name should have atleast 2 characters") String lastName,
+                @NotNull(message = "Username is mandatory") @Size(min = 6, message = "Username should have atleast 6 characters") String username,
+                @NotNull(message = "Password is mandatory") @Size(min = 6, message = "Password should have atleast 6 characters") String password,
+                @NotNull(message = "Email is mandatory") @Size(min = 3, message = "Email should have atleast 3 characters") @Email String email,
+                boolean isAdmin,
+                @Digits(integer = 11, fraction = 0) @Size(min = 11, message = "Cell Phone should have atleast 11 characters") String cellPhone) {
+        this.title = title;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.isAdmin = isAdmin;
+        this.cellPhone = cellPhone;
     }
 
     public User(String firstName, String lastName, String username, String password, String cellPhone, String email) {
@@ -139,15 +163,33 @@ public class User {
         this.email = email;
     }
 
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+
+    public void setAdmin(boolean admin) {
+        isAdmin = admin;
+    }
+
     @Override
     public String toString() {
         return new StringJoiner(", ", User.class.getSimpleName() + "[", "]")
                 .add("id='" + id + "'")
+                .add("title='" + title + "'")
                 .add("firstName='" + firstName + "'")
                 .add("lastName='" + lastName + "'")
                 .add("username='" + username + "'")
                 .add("password='" + password + "'")
                 .add("email='" + email + "'")
+                .add("isAdmin=" + isAdmin)
                 .add("cellPhone='" + cellPhone + "'")
                 .add("creationDate=" + creationDate)
                 .add("updatingDate=" + updatingDate)
@@ -159,7 +201,9 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return id.equals(user.id) &&
+        return isAdmin == user.isAdmin &&
+                id.equals(user.id) &&
+                title.equals(user.title) &&
                 firstName.equals(user.firstName) &&
                 lastName.equals(user.lastName) &&
                 username.equals(user.username) &&
@@ -172,7 +216,7 @@ public class User {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstName, lastName, username, password, email, cellPhone,
-                creationDate, updatingDate);
+        return Objects.hash(id, title, firstName, lastName, username, password,
+                email, isAdmin, cellPhone, creationDate, updatingDate);
     }
 }
