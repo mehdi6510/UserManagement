@@ -1,5 +1,4 @@
 import {UsersService} from '../../services/users.service';
-import {User} from '../../model/user';
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
@@ -11,7 +10,6 @@ import {MustMatch} from "../../util/validation-util";
 })
 export class CreateUserComponent implements OnInit {
 
-  user: User = new User();
   confirmPassword: string;
   registerForm: FormGroup;
   submitted = false;
@@ -43,7 +41,6 @@ export class CreateUserComponent implements OnInit {
 
   newUser(): void {
     this.submitted = false;
-    this.user = new User();
   }
 
   save() {
@@ -52,7 +49,7 @@ export class CreateUserComponent implements OnInit {
       return;
     }
 
-    this.userService.createUser(this.user)
+    this.userService.createUser(this.registerForm.value)
       .subscribe(data => {
           console.log(data);
           this.gotoList();

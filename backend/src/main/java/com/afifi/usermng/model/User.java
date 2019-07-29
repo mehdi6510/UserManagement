@@ -7,7 +7,6 @@ import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.validation.constraints.Digits;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -50,13 +49,13 @@ public class User {
 
     private boolean isAdmin;
 
-    @Digits(integer = 11, fraction = 0)
-    @Size(min = 11, message = "Cell Phone should have atleast 11 characters")
+    @Size(max = 11, message = "Cell Phone must be null or have atleast 11 characters")
     private String cellPhone;
 
     @CreatedDate
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private Date creationDate;
+
     @LastModifiedDate
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private Date updatingDate;
@@ -64,14 +63,16 @@ public class User {
     public User() {
     }
 
-    public User(@NotNull(message = "Title is mandatory") @Size(min = 2, message = "Title should have atleast 2 characters") String title,
+    public User(String id,
+                @NotNull(message = "Title is mandatory") @Size(min = 2, message = "Title should have atleast 2 characters") String title,
                 @NotNull(message = "First Name is mandatory") @Size(min = 2, message = "First Name should have atleast 2 characters") String firstName,
                 @NotNull(message = "Last Name is mandatory") @Size(min = 2, message = "Last Name should have atleast 2 characters") String lastName,
                 @NotNull(message = "Username is mandatory") @Size(min = 6, message = "Username should have atleast 6 characters") String username,
                 @NotNull(message = "Password is mandatory") @Size(min = 6, message = "Password should have atleast 6 characters") String password,
                 @NotNull(message = "Email is mandatory") @Size(min = 3, message = "Email should have atleast 3 characters") @Email String email,
                 boolean isAdmin,
-                @Digits(integer = 11, fraction = 0) @Size(min = 11, message = "Cell Phone should have atleast 11 characters") String cellPhone) {
+                @Size(max = 11, message = "Cell Phone must be null or have atleast 11 characters") String cellPhone) {
+        this.id = id;
         this.title = title;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -80,15 +81,6 @@ public class User {
         this.email = email;
         this.isAdmin = isAdmin;
         this.cellPhone = cellPhone;
-    }
-
-    public User(String firstName, String lastName, String username, String password, String cellPhone, String email) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.username = username;
-        this.password = password;
-        this.cellPhone = cellPhone;
-        this.email = email;
     }
 
     public String getId() {
@@ -171,11 +163,11 @@ public class User {
         this.title = title;
     }
 
-    public boolean isAdmin() {
+    public boolean getIsAdmin() {
         return isAdmin;
     }
 
-    public void setAdmin(boolean admin) {
+    public void setIsAdmin(boolean admin) {
         isAdmin = admin;
     }
 

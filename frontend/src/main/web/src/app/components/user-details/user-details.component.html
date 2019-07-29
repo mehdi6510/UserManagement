@@ -3,7 +3,7 @@
 <hr/>
 <div *ngIf="user">
   <div>
-    <label><b>Full Name: </b></label> `{{user.title}} {{user.firstName}} {{user.lastName}}`
+    <label><b>Full Name: </b></label> {{user.title}} {{user.firstName}} {{user.lastName}} {{user.isAdmin ? '(Admin)' : ''}}
   </div>
   <div>
     <label><b>Username: </b></label> {{user.username}}

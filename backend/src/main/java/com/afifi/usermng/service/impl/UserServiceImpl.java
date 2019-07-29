@@ -65,7 +65,7 @@ public class UserServiceImpl implements UserService {
         user.setPassword(userDetails.getPassword());
         user.setCellPhone(userDetails.getCellPhone());
         user.setEmail(userDetails.getEmail());
-        user.setAdmin(userDetails.isAdmin());
+        user.setIsAdmin(userDetails.getIsAdmin());
 
         final User updatedUser = userRepository.save(user);
         logger.info("User updated with this details : {}", updatedUser);
