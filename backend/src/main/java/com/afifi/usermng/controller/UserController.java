@@ -23,7 +23,7 @@ public class UserController {
     }
 
     @GetMapping(value = "/users/{id}")
-    public ResponseEntity<User> getUserById(@PathVariable(value = "id") String userId) throws ResourceNotFoundException {
+    public ResponseEntity<User> getUserById(@PathVariable(value = "id") Long userId) throws ResourceNotFoundException {
         return ResponseEntity.ok().body(userService.findById(userId));
     }
 
@@ -38,13 +38,13 @@ public class UserController {
     }
 
     @PutMapping(value = "/users/{id}")
-    public ResponseEntity<User> updateUser(@PathVariable(value = "id") String userId, @Valid @RequestBody User userDetails)
+    public ResponseEntity<User> updateUser(@PathVariable(value = "id") Long userId, @Valid @RequestBody User userDetails)
             throws ResourceNotFoundException {
         return ResponseEntity.ok(userService.update(userId, userDetails));
     }
 
     @DeleteMapping(value = "/users/{id}")
-    public Map<String, Boolean> deleteUser(@PathVariable(value = "id") String userId) throws ResourceNotFoundException {
+    public Map<String, Boolean> deleteUser(@PathVariable(value = "id") Long userId) throws ResourceNotFoundException {
         userService.deleteById(userId);
 
         Map<String, Boolean> response = new HashMap<>();

@@ -8,14 +8,14 @@ import java.util.List;
 
 public interface UserService {
 
-    User findById(String userId) throws ResourceNotFoundException;
+    User findById(Long userId) throws ResourceNotFoundException;
 
     List<User> findAll();
 
     User save(User user);
 
-    User update(String userId, User userDetails) throws ResourceNotFoundException;
+    User update(Long userId, User userDetails) throws ResourceNotFoundException;
 
-    void deleteById(String userId) throws ResourceNotFoundException;
+    void deleteById(Long userId) throws ResourceNotFoundException;
 
 }

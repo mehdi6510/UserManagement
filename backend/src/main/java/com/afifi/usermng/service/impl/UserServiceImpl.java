@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -22,7 +23,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findById(String userId) throws ResourceNotFoundException {
+    public User findById(Long userId) throws ResourceNotFoundException {
         logger.info("Try to find user with this id : {}", userId);
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found for this id :: " + userId));
@@ -35,9 +36,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> findAll() {
         logger.info("Try to load all users.");
-        List<User> users = userRepository.findAll();
-
-        logger.info("Users has been loaded. Size of result : {}", (users != null ? users.size() : 0));
+        List<User> users = new ArrayList<>(userRepository.findAll());
+        logger.info("Users has been loaded. Size of result : {}", users.size());
         logger.debug("Loaded users detail: {}", users);
         return users;
     }
@@ -51,7 +51,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User update(String userId, User userDetails) throws ResourceNotFoundException {
+    public User update(Long userId, User userDetails) throws ResourceNotFoundException {
         logger.info("Try to update user with this user id: {} and new detail: {}", userId, userDetails);
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found for this id :: " + userId));
@@ -73,7 +73,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void deleteById(String userId) throws ResourceNotFoundException {
+    public void deleteById(Long userId) throws ResourceNotFoundException {
         logger.info("Try to delete user with this user id: {}", userId);
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found for this id :: " + userId));
