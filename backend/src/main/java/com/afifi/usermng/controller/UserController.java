@@ -26,11 +26,13 @@ public class UserController {
 
     @GetMapping(value = "/users/{id}")
     public ResponseEntity<User> getUserById(@PathVariable(value = "id") Long userId) throws ResourceNotFoundException {
+        logger.info("Receive request to get user by id : {}", userId);
         return ResponseEntity.ok().body(userService.findById(userId));
     }
 
     @GetMapping(value = "/users")
     public List<User> getAllUsers() {
+        logger.info("Receive request to get all users");
         return userService.findAll();
     }
 
@@ -49,6 +51,7 @@ public class UserController {
 
     @DeleteMapping(value = "/users/{id}")
     public Map<String, Boolean> deleteUser(@PathVariable(value = "id") Long userId) throws ResourceNotFoundException {
+        logger.info("Receive request to delete user by id : {}", userId);
         userService.deleteById(userId);
 
         Map<String, Boolean> response = new HashMap<>();
