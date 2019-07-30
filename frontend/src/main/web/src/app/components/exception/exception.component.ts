@@ -12,5 +12,6 @@ export class ExceptionComponent implements OnInit {
   }
 
   ngOnInit() {
+
   }
 }
