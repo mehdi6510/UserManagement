@@ -26,6 +26,7 @@
           <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
             <div *ngIf="f.firstName.errors.required">First Name is required</div>
             <div *ngIf="f.firstName.errors.minlength">First Name must be at least 2 characters</div>
+            <div *ngIf="f.firstName.errors.maxlength">First Name must be maximum 50 characters</div>
           </div>
         </div>
 
@@ -35,6 +36,7 @@
           <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
             <div *ngIf="f.lastName.errors.required">Last Name is required</div>
             <div *ngIf="f.lastName.errors.minlength">Last Name must be at least 2 characters</div>
+            <div *ngIf="f.lastName.errors.maxlength">Last Name must be maximum 50 characters</div>
           </div>
         </div>
 
@@ -52,6 +54,7 @@
           <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
             <div *ngIf="f.email.errors.required">Email is required</div>
             <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+            <div *ngIf="f.email.errors.maxlength">Email must be maximum 100 characters</div>
           </div>
         </div>
 
@@ -61,6 +64,7 @@
           <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
             <div *ngIf="f.username.errors.required">Username is required</div>
             <div *ngIf="f.username.errors.minlength">Username must be at least 6 characters</div>
+            <div *ngIf="f.username.errors.maxlength">Username must be maximum 25 characters</div>
           </div>
         </div>
 
@@ -70,6 +74,7 @@
           <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
             <div *ngIf="f.password.errors.required">Password is required</div>
             <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+            <div *ngIf="f.password.errors.maxlength">Password must be maximum 25 characters</div>
           </div>
         </div>
 
@@ -79,6 +84,8 @@
           <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
             <div *ngIf="f.confirmPassword.errors.required">Confirm Password is required</div>
             <div *ngIf="f.confirmPassword.errors.mustMatch">Passwords must match</div>
+            <div *ngIf="f.confirmPassword.errors.minlength">Confirm Password must be at least 6 characters</div>
+            <div *ngIf="f.confirmPassword.errors.maxlength">Confirm Password must be maximum 25 characters</div>
           </div>
         </div>
 

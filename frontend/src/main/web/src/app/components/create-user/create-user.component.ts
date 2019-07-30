@@ -23,13 +23,13 @@ export class CreateUserComponent implements OnInit {
 
     this.registerForm = this.formBuilder.group({
       title: new FormControl('', [Validators.required]),
-      firstName: new FormControl('', [Validators.required, Validators.minLength(2)]),
-      lastName: new FormControl('', [Validators.required, Validators.minLength(2)]),
+      firstName: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]),
+      lastName: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]),
       cellPhone: new FormControl('', [Validators.pattern('09(1[0-9]|3[1-9]|2[1-9])-?[0-9]{3}-?[0-9]{4}')]),
-      email: new FormControl('', [Validators.required, Validators.email]),
-      username: new FormControl('', [Validators.required, Validators.minLength(6)]),
-      password: new FormControl('', [Validators.required, Validators.minLength(6)]),
-      confirmPassword: new FormControl('', [Validators.required, Validators.minLength(6)]),
+      email: new FormControl('', [Validators.required, Validators.email, Validators.maxLength(100)]),
+      username: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(25)]),
+      password: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(25)]),
+      confirmPassword: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(25)]),
       isAdmin: new FormControl(false)
     }, {
       validators: [MustMatch('password', 'confirmPassword')]
@@ -52,19 +52,19 @@ export class CreateUserComponent implements OnInit {
 
     this.userService.createUser(this.registerForm.value)
       .subscribe(data => {
-          console.log(data);
-          this.gotoList();
+        console.log(data);
+        this.gotoList();
 
-        }, excp => {
-          console.log(excp);
-          if (excp.error instanceof Array) {
-            for (let err of excp.error) {
-              this.error += `${err.message}.\n`;
-            }
-          } else {
-            this.error = `${excp.error.message}`;
+      }, excp => {
+        console.log(excp);
+        if (excp.error instanceof Array) {
+          for (let err of excp.error) {
+            this.error += `${err.message}.\n`;
           }
-        });
+        } else {
+          this.error = `${excp.error.message}`;
+        }
+      });
   }
 
   onSubmit() {

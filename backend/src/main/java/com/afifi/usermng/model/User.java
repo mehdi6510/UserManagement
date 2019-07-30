@@ -33,11 +33,11 @@ public class User {
     private String title;
 
     @NotNull(message = "First Name is mandatory")
-    @Size(min = 2, max = 250, message = "First Name should have atleast 2 characters")
+    @Size(min = 2, max = 50, message = "First Name should have atleast 2 characters")
     private String firstName;
 
     @NotNull(message = "Last Name is mandatory")
-    @Size(min = 2, max = 250, message = "Last Name should have atleast 2 characters")
+    @Size(min = 2, max = 50, message = "Last Name should have atleast 2 characters")
     private String lastName;
 
     @NotNull(message = "Username is mandatory")
@@ -49,7 +49,7 @@ public class User {
     private String password;
 
     @NotNull(message = "Email is mandatory")
-    @Size(min = 3, max = 250, message = "Email should have atleast 3 characters")
+    @Size(min = 3, max = 100, message = "Email should have atleast 3 characters")
     @Email
     private String email;
 
