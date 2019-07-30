@@ -3,10 +3,11 @@ package com.afifi.usermng.controller;
 import com.afifi.usermng.exception.ResourceNotFoundException;
 import com.afifi.usermng.model.User;
 import com.afifi.usermng.service.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,6 +17,7 @@ import java.util.Map;
 @RequestMapping("/usermanagement/api")
 public class UserController {
 
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
     private UserService userService;
 
     public UserController(UserService userService) {
@@ -33,13 +35,15 @@ public class UserController {
     }
 
     @PostMapping(value = "/users")
-    public User createUser(@Valid @RequestBody User user) {
+    public User createUser(@RequestBody User user) {
+        logger.info("Receive request to save user : {}", user);
         return userService.save(user);
     }
 
     @PutMapping(value = "/users/{id}")
-    public ResponseEntity<User> updateUser(@PathVariable(value = "id") Long userId, @Valid @RequestBody User userDetails)
+    public ResponseEntity<User> updateUser(@PathVariable(value = "id") Long userId, @RequestBody User userDetails)
             throws ResourceNotFoundException {
+        logger.info("Receive request to update user with this user id: {} and new detail: {}", userId, userDetails);
         return ResponseEntity.ok(userService.update(userId, userDetails));
     }
 
