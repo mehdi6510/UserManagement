@@ -29,27 +29,27 @@ public class User {
     private long id;
 
     @NotNull(message = "Title is mandatory")
-    @Size(min = 2, message = "Title should have atleast 2 characters")
+    @Size(min = 2, max = 5, message = "Title should have atleast 2 characters")
     private String title;
 
     @NotNull(message = "First Name is mandatory")
-    @Size(min = 2, message = "First Name should have atleast 2 characters")
+    @Size(min = 2, max = 250, message = "First Name should have atleast 2 characters")
     private String firstName;
 
     @NotNull(message = "Last Name is mandatory")
-    @Size(min = 2, message = "Last Name should have atleast 2 characters")
+    @Size(min = 2, max = 250, message = "Last Name should have atleast 2 characters")
     private String lastName;
 
     @NotNull(message = "Username is mandatory")
-    @Size(min = 6, message = "Username should have atleast 6 characters")
+    @Size(min = 6, max = 25, message = "Username should have atleast 6 characters")
     private String username;
 
     @NotNull(message = "Password is mandatory")
-    @Size(min = 6, message = "Password should have atleast 6 characters")
+    @Size(min = 6, max = 25, message = "Password should have atleast 6 characters")
     private String password;
 
     @NotNull(message = "Email is mandatory")
-    @Size(min = 3, message = "Email should have atleast 3 characters")
+    @Size(min = 3, max = 250, message = "Email should have atleast 3 characters")
     @Email
     private String email;
 
