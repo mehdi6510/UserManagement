@@ -42,7 +42,7 @@
           <input type="text" placeholder="Cell Phone" formControlName="cellPhone" class="form-control"
                  [ngClass]="{'is-invalid': submitted && f.cellPhone.errors}"/>
           <div *ngIf="submitted && f.cellPhone.errors" class="invalid-feedback">
-            <div *ngIf="f.cellPhone.errors.pattern">Cell Phone must be a valid number</div>
+            <div *ngIf="f.cellPhone.errors.pattern">Cell Phone must be a valid number (Only Iran's numbers)</div>
           </div>
         </div>
 

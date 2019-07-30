@@ -27,9 +27,9 @@ export class UserDetailsComponent implements OnInit {
         console.log(data);
         this.user = data;
 
-      }, error => {
-        console.log(error);
-        this.error = `${error.error.message}`;
+      }, excp => {
+        console.log(excp);
+        this.error = `${excp.error.message}`;
       });
   }
 

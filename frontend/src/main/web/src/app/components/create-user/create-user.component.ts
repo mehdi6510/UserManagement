@@ -55,14 +55,14 @@ export class CreateUserComponent implements OnInit {
           console.log(data);
           this.gotoList();
 
-        }, error => {
-          console.log(error);
-          if (error.error instanceof Array) {
-            for (let err of error.error) {
+        }, excp => {
+          console.log(excp);
+          if (excp.error instanceof Array) {
+            for (let err of excp.error) {
               this.error += `${err.message}.\n`;
             }
           } else {
-            this.error = `${error.error.message}`;
+            this.error = `${excp.error.message}`;
           }
         });
   }
