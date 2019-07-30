@@ -23,18 +23,18 @@ public class GlobalExceptionHandler {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @ExceptionHandler(ResourceNotFoundException.class)
-    public ResponseEntity<?> resourceNotFoundException(ResourceNotFoundException ex, WebRequest request) {
+    public ResponseEntity<?> handleResourceNotFoundException(ResourceNotFoundException ex, WebRequest request) {
         ErrorDetails errorDetails = new ErrorDetails(new Date(), ex.getMessage(), request.getDescription(false));
 
-        logger.error("Exception occurred! : {} , HttpStatus = {}", errorDetails, HttpStatus.NOT_FOUND);
+        logger.error("Exception occurred! : {} , HttpStatus = {}", errorDetails, HttpStatus.NOT_FOUND, ex);
         return new ResponseEntity<>(errorDetails, HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<?> globleExcpetionHandler(Exception ex, WebRequest request) {
+    public ResponseEntity<?> handleGlobleExcpetion(Exception ex, WebRequest request) {
         ErrorDetails errorDetails = new ErrorDetails(new Date(), ex.getMessage(), request.getDescription(false));
 
-        logger.error("Exception occurred! : {} , HttpStatus = {}", errorDetails, HttpStatus.INTERNAL_SERVER_ERROR);
+        logger.error("Exception occurred! : {} , HttpStatus = {}", errorDetails, HttpStatus.INTERNAL_SERVER_ERROR, ex);
         return new ResponseEntity<>(errorDetails, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
@@ -49,7 +49,7 @@ public class GlobalExceptionHandler {
             errors.add(new ErrorDetails(new Date(), errorMessage, fieldName));
         });
 
-        logger.error("Exception occurred! : {} , HttpStatus = {}", errors, HttpStatus.BAD_REQUEST);
+        logger.error("Exception occurred! : {} , HttpStatus = {}", errors, HttpStatus.BAD_REQUEST, ex);
         return errors;
     }
 

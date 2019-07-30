@@ -23,7 +23,7 @@ export class UserListComponent implements OnInit {
     this.users = this.userService.getUsersList();
   }
 
-  deleteUser(id: string) {
+  deleteUser(id: number) {
     this.userService.deleteUser(id)
       .subscribe(
         data => {
@@ -33,11 +33,11 @@ export class UserListComponent implements OnInit {
         error => console.log(error));
   }
 
-  userDetails(id: string){
+  userDetails(id: number){
     this.router.navigate(['details', id]);
   }
 
-  updateUser(id: string) {
+  updateUser(id: number) {
     this.router.navigate(['update', id]);
   }
 

@@ -5,7 +5,8 @@
 <hr/>
 <div *ngIf="user">
   <div>
-    <label><b>Full Name: </b></label> {{user.title}} {{user.firstName}} {{user.lastName}} {{user.isAdmin ? '(Admin)' : ''}}
+    <label><b>Full
+      Name: </b></label> {{user.title}} {{user.firstName}} {{user.lastName}} {{user.isAdmin ? '(Admin)' : ''}}
   </div>
   <div>
     <label><b>Username: </b></label> {{user.username}}
@@ -17,10 +18,19 @@
     <label><b>Email: </b></label> {{user.email}}
   </div>
   <div>
-    <label><b>Creation Date: </b></label> {{user.creationDate}}
+    <label><b>Created By: </b></label> {{user.createdBy}}
   </div>
+  <div>
+    <label><b>Updated By: </b></label> {{user.lastModifiedBy}}
+  </div>
+  <div>
+    <label><b>Created Date: </b></label> {{user.createdDate}}
+  </div>
+  <div>
+    <label><b>Updated Date: </b></label> {{user.lastModifiedDate}}
+  </div>
+
 </div>
 
-<br>
 <br>
 <button (click)="list()" class="btn btn-primary">Back to User List</button><br>

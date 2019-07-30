@@ -11,7 +11,7 @@ export class UsersService {
 
   constructor(private http: HttpClient) {}
 
-  getUser(id: string): Observable<any> {
+  getUser(id: number): Observable<any> {
     return this.http.get(`${this.baseUrl}/${id}`);
   }
 
@@ -23,11 +23,11 @@ export class UsersService {
     return this.http.post(`${this.baseUrl}`, user);
   }
 
-  updateUser(id: string, value: any): Observable<Object> {
+  updateUser(id: number, value: any): Observable<Object> {
     return this.http.put(`${this.baseUrl}/${id}`, value);
   }
 
-  deleteUser(id: string): Observable<any> {
+  deleteUser(id: number): Observable<any> {
     return this.http.delete(`${this.baseUrl}/${id}`, { responseType: 'text' });
   }
 

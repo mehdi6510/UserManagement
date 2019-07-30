@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -37,13 +38,13 @@ public class UserController {
     }
 
     @PostMapping(value = "/users")
-    public User createUser(@RequestBody User user) {
+    public User createUser(@Valid @RequestBody User user) {
         logger.info("Receive request to save user : {}", user);
         return userService.save(user);
     }
 
     @PutMapping(value = "/users/{id}")
-    public ResponseEntity<User> updateUser(@PathVariable(value = "id") Long userId, @RequestBody User userDetails)
+    public ResponseEntity<User> updateUser(@PathVariable(value = "id") Long userId, @Valid @RequestBody User userDetails)
             throws ResourceNotFoundException {
         logger.info("Receive request to update user with this user id: {} and new detail: {}", userId, userDetails);
         return ResponseEntity.ok(userService.update(userId, userDetails));

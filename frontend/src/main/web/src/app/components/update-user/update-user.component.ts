@@ -8,7 +8,8 @@ import {User} from "../../model/User";
   templateUrl: './update-user.component.html'
 })
 export class UpdateUserComponent implements OnInit {
-  id: string;
+
+  id: number;
   user: User;
   confirmPassword: string;
   submitted = false;
@@ -21,7 +22,7 @@ export class UpdateUserComponent implements OnInit {
     this.loadUser(this.id);
   }
 
-  loadUser(id: string): void {
+  loadUser(id: number): void {
     this.userService.getUser(id).subscribe(data => {
       this.user = data;
       console.log(data);

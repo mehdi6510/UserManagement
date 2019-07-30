@@ -8,7 +8,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -44,7 +43,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User save(@Valid User user) {
+    public User save(User user) {
         logger.info("Try to save user : {}", user);
         userRepository.save(user);
         logger.info("User saved : {}", user);
@@ -52,7 +51,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User update(Long userId, @Valid User userDetails) throws ResourceNotFoundException {
+    public User update(Long userId, User userDetails) throws ResourceNotFoundException {
         logger.info("Try to update user with this user id: {} and new detail: {}", userId, userDetails);
         User user = userRepository.findById(userId).orElseThrow(() ->
                 new ResourceNotFoundException("User not found for this id :: " + userId));

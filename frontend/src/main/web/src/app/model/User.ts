@@ -1,6 +1,6 @@
 export class User {
 
-  id: string;
+  id: number;
   title: string;
   firstName: string;
   lastName: string;
@@ -8,6 +8,9 @@ export class User {
   password: string;
   cellPhone: string;
   email: string;
-  creationDate: Date;
   isAdmin: boolean;
+  createdBy: string;
+  lastModifiedBy: string;
+  createdDate: Date;
+  lastModifiedDate: Date;
 }
