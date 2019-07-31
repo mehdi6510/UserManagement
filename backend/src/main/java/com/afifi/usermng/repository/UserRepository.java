@@ -1,6 +1,6 @@
 package com.afifi.usermng.repository;
 
-import com.afifi.usermng.model.User;
+import com.afifi.usermng.entity.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,7 +1,7 @@
 package com.afifi.usermng.service;
 
+import com.afifi.usermng.entity.model.User;
 import com.afifi.usermng.exception.ResourceNotFoundException;
-import com.afifi.usermng.model.User;
 
 import java.util.List;
 

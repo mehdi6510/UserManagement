@@ -1,14 +1,14 @@
 package com.afifi.usermng.service.impl;
 
+import com.afifi.usermng.entity.mapper.Mapper;
+import com.afifi.usermng.entity.model.User;
 import com.afifi.usermng.exception.ResourceNotFoundException;
-import com.afifi.usermng.model.User;
 import com.afifi.usermng.repository.UserRepository;
 import com.afifi.usermng.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -17,9 +17,11 @@ public class UserServiceImpl implements UserService {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
     private UserRepository userRepository;
+    private Mapper mapper;
 
-    public UserServiceImpl(UserRepository userRepository) {
+    public UserServiceImpl(UserRepository userRepository, Mapper mapper) {
         this.userRepository = userRepository;
+        this.mapper = mapper;
     }
 
     @Override
@@ -36,7 +38,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> findAll() {
         logger.info("Try to load all users.");
-        List<User> users = new ArrayList<>(userRepository.findAll());
+        List<User> users = userRepository.findAll();
+
         logger.info("Users has been loaded. Size of result : {}", users.size());
         logger.debug("Loaded users detail: {}", users);
         return users;
@@ -55,20 +58,10 @@ public class UserServiceImpl implements UserService {
         logger.info("Try to update user with this user id: {} and new detail: {}", userId, userDetails);
         User user = userRepository.findById(userId).orElseThrow(() ->
                 new ResourceNotFoundException("User not found for this id :: " + userId));
-
         logger.info("Existing user data id db has been loaded with this details : {}", user);
 
-        // TODO : using mapper and check usrname and password
-        user.setTitle(userDetails.getTitle());
-        user.setFirstName(userDetails.getFirstName());
-        user.setLastName(userDetails.getLastName());
-        user.setUsername(userDetails.getUsername());
-        user.setPassword(userDetails.getPassword());
-        user.setCellPhone(userDetails.getCellPhone());
-        user.setEmail(userDetails.getEmail());
-        user.setIsAdmin(userDetails.getIsAdmin());
-
-        final User updatedUser = userRepository.save(user);
+        mapper.fillUpdatingDetails(user, userDetails);
+        User updatedUser = userRepository.save(user);
         logger.info("User updated with this details : {}", updatedUser);
         return updatedUser;
     }

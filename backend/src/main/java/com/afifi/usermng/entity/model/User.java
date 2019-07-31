@@ -1,4 +1,4 @@
-package com.afifi.usermng.model;
+package com.afifi.usermng.entity.model;
 
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;

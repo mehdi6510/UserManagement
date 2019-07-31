@@ -1,7 +1,7 @@
 package com.afifi.usermng.controller;
 
+import com.afifi.usermng.entity.model.User;
 import com.afifi.usermng.exception.ResourceNotFoundException;
-import com.afifi.usermng.model.User;
 import com.afifi.usermng.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
