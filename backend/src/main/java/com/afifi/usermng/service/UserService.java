@@ -1,21 +1,20 @@
 package com.afifi.usermng.service;
 
-import com.afifi.usermng.exception.ResourceNotFoundException;
 import com.afifi.usermng.model.User;
-
-import java.util.List;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 
 public interface UserService {
 
-    User findById(Long userId) throws ResourceNotFoundException;
+    Mono<User> findById(Long userId);
 
-    List<User> findAll();
+    Flux<User> findAll();
 
-    User save(User user);
+    Mono<User> save(User user);
 
-    User update(Long userId, User userDetails) throws ResourceNotFoundException;
+    Mono<User> update(User updatingUser);
 
-    void deleteById(Long userId) throws ResourceNotFoundException;
+    Mono<Void> deleteById(Long userId);
 
 }
