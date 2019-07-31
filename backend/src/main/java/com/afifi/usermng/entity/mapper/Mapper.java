@@ -1,14 +1,12 @@
 package com.afifi.usermng.entity.mapper;
 
 import com.afifi.usermng.entity.model.User;
-import org.dozer.DozerBeanMapper;
 import org.springframework.stereotype.Component;
 
 @Component
 public class Mapper {
 
-    private static DozerBeanMapper apiBeanMapper = new DozerBeanMapper();
-
+//    private static DozerBeanMapper apiBeanMapper = new DozerBeanMapper();
 //    static {
 //        BeanMappingBuilder mappingBuilder = new BeanMappingBuilder() {
 //            @Override
@@ -26,10 +24,9 @@ public class Mapper {
 //        apiBeanMapper = new DozerBeanMapper();
 //        apiBeanMapper.addMapping(mappingBuilder);
 //    }
-
-    public DozerBeanMapper getApiBeanMapper() {
-        return apiBeanMapper;
-    }
+//    public DozerBeanMapper getApiBeanMapper() {
+//        return apiBeanMapper;
+//    }
 
     public void fillUpdatingDetails(User user, User userDetails) {
         user.setTitle(userDetails.getTitle());

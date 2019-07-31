@@ -25,7 +25,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findById(Long userId) throws ResourceNotFoundException {
+    public User findById(Long userId) {
         logger.info("Try to find user with this id : {}", userId);
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found for this id :: " + userId));
@@ -54,7 +54,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User update(Long userId, User userDetails) throws ResourceNotFoundException {
+    public User update(Long userId, User userDetails) {
         logger.info("Try to update user with this user id: {} and new detail: {}", userId, userDetails);
         User user = userRepository.findById(userId).orElseThrow(() ->
                 new ResourceNotFoundException("User not found for this id :: " + userId));
@@ -67,7 +67,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void deleteById(Long userId) throws ResourceNotFoundException {
+    public void deleteById(Long userId) {
         logger.info("Try to delete user with this user id: {}", userId);
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found for this id :: " + userId));

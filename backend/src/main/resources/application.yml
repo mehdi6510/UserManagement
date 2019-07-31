@@ -1,6 +1,9 @@
 spring:
   profiles.active: dev
 
+  jpa:
+    open-in-view: false
+
 #  security:
 #    user.name: test
 #    user.password: test123

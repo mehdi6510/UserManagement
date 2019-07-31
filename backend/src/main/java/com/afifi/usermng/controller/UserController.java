@@ -1,7 +1,6 @@
 package com.afifi.usermng.controller;
 
 import com.afifi.usermng.entity.model.User;
-import com.afifi.usermng.exception.ResourceNotFoundException;
 import com.afifi.usermng.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,7 +25,7 @@ public class UserController {
     }
 
     @GetMapping(value = "/users/{id}")
-    public ResponseEntity<User> getUserById(@PathVariable(value = "id") Long userId) throws ResourceNotFoundException {
+    public ResponseEntity<User> getUserById(@PathVariable(value = "id") Long userId) {
         logger.info("Receive request to get user by id : {}", userId);
         return ResponseEntity.ok().body(userService.findById(userId));
     }
@@ -38,20 +37,19 @@ public class UserController {
     }
 
     @PostMapping(value = "/users")
-    public User createUser(@Valid @RequestBody User user) {
+    public ResponseEntity<User> createUser(@Valid @RequestBody User user) {
         logger.info("Receive request to save user : {}", user);
-        return userService.save(user);
+        return ResponseEntity.ok().body(userService.save(user));
     }
 
     @PutMapping(value = "/users/{id}")
-    public ResponseEntity<User> updateUser(@PathVariable(value = "id") Long userId, @Valid @RequestBody User userDetails)
-            throws ResourceNotFoundException {
+    public ResponseEntity<User> updateUser(@PathVariable(value = "id") Long userId, @Valid @RequestBody User userDetails) {
         logger.info("Receive request to update user with this user id: {} and new detail: {}", userId, userDetails);
         return ResponseEntity.ok(userService.update(userId, userDetails));
     }
 
     @DeleteMapping(value = "/users/{id}")
-    public Map<String, Boolean> deleteUser(@PathVariable(value = "id") Long userId) throws ResourceNotFoundException {
+    public Map<String, Boolean> deleteUser(@PathVariable(value = "id") Long userId) {
         logger.info("Receive request to delete user by id : {}", userId);
         userService.deleteById(userId);
 

@@ -50,7 +50,7 @@ public class User {
 
     @NotNull(message = "Email is mandatory")
     @Size(min = 3, max = 100, message = "Email should have atleast 3 characters")
-    @Email
+    @Email(message = "Email has invalid format")
     private String email;
 
     @Size(max = 11, message = "Cell Phone must be null or have atleast 11 characters")

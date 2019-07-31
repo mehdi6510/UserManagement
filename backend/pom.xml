@@ -66,11 +66,11 @@
             <scope>test</scope>
         </dependency>
 
-        <dependency>
-            <groupId>net.sf.dozer</groupId>
-            <artifactId>dozer</artifactId>
-            <version>5.5.1</version>
-        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>net.sf.dozer</groupId>-->
+        <!--            <artifactId>dozer</artifactId>-->
+        <!--            <version>5.5.1</version>-->
+        <!--        </dependency>-->
 
         <!--        <dependency>-->
         <!--            <groupId>org.springframework.boot</groupId>-->
@@ -116,15 +116,15 @@
                             <goal>npm</goal>
                         </goals>
                     </execution>
-<!--                    <execution>-->
-<!--                        <id>npm run build</id>-->
-<!--                        <goals>-->
-<!--                            <goal>npm</goal>-->
-<!--                        </goals>-->
-<!--                        <configuration>-->
-<!--                            <arguments>ng build</arguments>-->
-<!--                        </configuration>-->
-<!--                    </execution>-->
+                    <!--                    <execution>-->
+                    <!--                        <id>npm run build</id>-->
+                    <!--                        <goals>-->
+                    <!--                            <goal>npm</goal>-->
+                    <!--                        </goals>-->
+                    <!--                        <configuration>-->
+                    <!--                            <arguments>ng build</arguments>-->
+                    <!--                        </configuration>-->
+                    <!--                    </execution>-->
                     <execution>
                         <id>prod</id>
                         <goals>
