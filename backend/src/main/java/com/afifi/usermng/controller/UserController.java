@@ -32,9 +32,9 @@ public class UserController {
     }
 
     @GetMapping(value = "/users")
-    public List<User> getAllUsers() {
+    public ResponseEntity<List<User>> getAllUsers() {
         logger.info("Receive request to get all users");
-        return userService.getAllUsers();
+        return ResponseEntity.ok().body(userService.getAllUsers());
     }
 
     @PostMapping(value = "/users")
