@@ -1,20 +1,20 @@
 package com.afifi.usermng.service;
 
-import com.afifi.usermng.entity.model.User;
+import com.afifi.usermng.exception.ResourceNotFoundException;
+import com.afifi.usermng.model.User;
 
 import java.util.List;
 
-
 public interface UserService {
 
-    User findById(Long userId);
+    User getUserById(Long userId) throws ResourceNotFoundException;
 
-    List<User> findAll();
+    List<User> getAllUsers();
 
-    User save(User user);
+    User createUser(User user);
 
-    User update(Long userId, User userDetails);
+    User updateUser(Long userId, User userDetails) throws ResourceNotFoundException;
 
-    void deleteById(Long userId);
+    void deleteUser(Long userId) throws ResourceNotFoundException;
 
 }

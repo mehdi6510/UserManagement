@@ -1,8 +1,8 @@
 package com.afifi.usermng.service.impl;
 
-import com.afifi.usermng.entity.mapper.Mapper;
-import com.afifi.usermng.entity.model.User;
 import com.afifi.usermng.exception.ResourceNotFoundException;
+import com.afifi.usermng.model.User;
+import com.afifi.usermng.model.mapper.Mapper;
 import com.afifi.usermng.repository.UserRepository;
 import com.afifi.usermng.service.UserService;
 import org.slf4j.Logger;
@@ -12,6 +12,11 @@ import org.springframework.stereotype.Service;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * User Service
+ *
+ * @author Mehdi Afifi
+ */
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -25,7 +30,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findById(Long userId) {
+    public User getUserById(Long userId) throws ResourceNotFoundException {
         logger.info("Try to find user with this id : {}", userId);
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found for this id :: " + userId));
@@ -36,7 +41,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> findAll() {
+    public List<User> getAllUsers() {
         logger.info("Try to load all users.");
         List<User> users = userRepository.findAll();
 
@@ -46,7 +51,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User save(User user) {
+    public User createUser(User user) {
         logger.info("Try to save user : {}", user);
         userRepository.save(user);
         logger.info("User saved : {}", user);
@@ -54,7 +59,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User update(Long userId, User userDetails) {
+    public User updateUser(Long userId, User userDetails) throws ResourceNotFoundException {
         logger.info("Try to update user with this user id: {} and new detail: {}", userId, userDetails);
         User user = userRepository.findById(userId).orElseThrow(() ->
                 new ResourceNotFoundException("User not found for this id :: " + userId));
@@ -67,7 +72,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void deleteById(Long userId) {
+    public void deleteUser(Long userId) throws ResourceNotFoundException {
         logger.info("Try to delete user with this user id: {}", userId);
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found for this id :: " + userId));

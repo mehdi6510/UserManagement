@@ -1,6 +1,6 @@
-package com.afifi.usermng.entity.mapper;
+package com.afifi.usermng.model.mapper;
 
-import com.afifi.usermng.entity.model.User;
+import com.afifi.usermng.model.User;
 import org.springframework.stereotype.Component;
 
 @Component

@@ -1,4 +1,4 @@
-package com.afifi.usermng.entity.model;
+package com.afifi.usermng.model;
 
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
@@ -73,6 +73,25 @@ public class User {
     private Date lastModifiedDate;
 
     public User() {
+    }
+
+    public User(@NotNull(message = "Title is mandatory") @Size(min = 2, max = 5, message = "Title should have atleast 2 characters") String title,
+                @NotNull(message = "First Name is mandatory") @Size(min = 2, max = 50, message = "First Name should have atleast 2 characters") String firstName,
+                @NotNull(message = "Last Name is mandatory") @Size(min = 2, max = 50, message = "Last Name should have atleast 2 characters") String lastName,
+                @NotNull(message = "Username is mandatory") @Size(min = 6, max = 25, message = "Username should have atleast 6 characters") String username,
+                @NotNull(message = "Password is mandatory") @Size(min = 6, max = 25, message = "Password should have atleast 6 characters") String password,
+                @NotNull(message = "Email is mandatory") @Size(min = 3, max = 100, message = "Email should have atleast 3 characters")
+                @Email(message = "Email has invalid format") String email,
+                @Size(max = 11, message = "Cell Phone must be null or have atleast 11 characters") String cellPhone,
+                boolean isAdmin) {
+        this.title = title;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.cellPhone = cellPhone;
+        this.isAdmin = isAdmin;
     }
 
     public User(@NotNull(message = "Title is mandatory") @Size(min = 2, message = "Title should have atleast 2 characters") String title,
