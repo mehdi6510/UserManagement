@@ -16,16 +16,27 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
  */
 @Aspect
 @Component
-public class ExceptionHandlingAspect {
+public class ServiceExceptionHandlingAspect {
 
+    /** TODO test this !!!
     /**
-     * Pointcut that matches all repositories, services.
+     * Pointcut that matches all repositories, services and Web REST endpoints.
      */
     @Pointcut("within(@org.springframework.stereotype.Repository *)" +
-            " || within(@org.springframework.stereotype.Service *)")
-    public void springServicePointcut() {
+            " || within(@org.springframework.stereotype.Service *)" +
+            " || within(@org.springframework.web.bind.annotation.RestController *)")
+    public void springBeanPointcut() {
         // Method is empty as this is just a Pointcut, the implementations are in the advices.
     }
+
+//    /**
+//     * Pointcut that matches all repositories, services.
+//     */
+//    @Pointcut("within(@org.springframework.stereotype.Repository *)" +
+//            " || within(@org.springframework.stereotype.Service *)")
+//    public void springServicePointcut() {
+//        // Method is empty as this is just a Pointcut, the implementations are in the advices.
+//    }
 
     /**
      * Advice that handle exceptions.
@@ -33,7 +44,7 @@ public class ExceptionHandlingAspect {
      * @param joinPoint join point for advice
      * @param ex        exception
      */
-    @AfterThrowing(pointcut = "springServicePointcut()", throwing = "ex")
+    @AfterThrowing(pointcut = "springBeanPointcut()", throwing = "ex")
     public void AfterThrowing(JoinPoint joinPoint, Throwable ex) throws Throwable {
         if (ex instanceof ResourceNotFoundException || ex instanceof MethodArgumentNotValidException) {
             throw ex;
