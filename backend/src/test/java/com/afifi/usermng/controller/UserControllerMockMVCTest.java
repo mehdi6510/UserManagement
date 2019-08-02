@@ -57,9 +57,9 @@ public class UserControllerMockMVCTest {
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(1))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.firstName").value("Mehdi-1"))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.lastName").value("Afifi-1"))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.username").value("username-1"));
+                .andExpect(MockMvcResultMatchers.jsonPath("$.firstName").value("Mehdi"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.lastName").value("Afifi"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.username").value("username"));
     }
 
     @Test
