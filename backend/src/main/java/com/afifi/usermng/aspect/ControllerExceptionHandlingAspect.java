@@ -2,6 +2,7 @@ package com.afifi.usermng.aspect;
 
 import com.afifi.usermng.exception.ErrorDetails;
 import com.afifi.usermng.exception.ResourceNotFoundException;
+import com.afifi.usermng.exception.ServiceException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -43,6 +44,14 @@ public class ControllerExceptionHandlingAspect {
 
         logger.error("Exception occurred! : {} , HttpStatus = {}", errorDetails, HttpStatus.NOT_FOUND, ex);
         return new ResponseEntity<>(errorDetails, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(ServiceException.class)
+    public ResponseEntity<?> handleAllExceptions(ServiceException ex, WebRequest request) {
+        ErrorDetails errorDetails = new ErrorDetails(new Date(), ex.getMessage(), request.getDescription(false));
+
+        logger.error("Exception occurred! : {} , HttpStatus = {}", errorDetails, HttpStatus.INTERNAL_SERVER_ERROR, ex);
+        return new ResponseEntity<>(errorDetails, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ExceptionHandler(Exception.class)

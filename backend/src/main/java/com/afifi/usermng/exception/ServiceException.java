@@ -7,23 +7,28 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class ServiceException extends RuntimeException {
 
     private static final long serialVersionUID = 1L;
+    private String DEFAULT_MASSAGE = "Unfortunately an exception occurred in the server. ";
 
     public ServiceException() {
     }
 
     public ServiceException(String message) {
         super(message);
+        this.DEFAULT_MASSAGE += message;
     }
 
     public ServiceException(String message, Throwable cause) {
         super(message, cause);
+        this.DEFAULT_MASSAGE += message;
     }
 
     public ServiceException(Throwable cause) {
         super(cause);
     }
 
-    public ServiceException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
-        super(message, cause, enableSuppression, writableStackTrace);
+    @Override
+    public String getMessage() {
+        return DEFAULT_MASSAGE;
     }
+
 }

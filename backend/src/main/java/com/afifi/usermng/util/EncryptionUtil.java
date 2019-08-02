@@ -16,10 +16,10 @@ import java.security.SecureRandom;
 @Component
 public class EncryptionUtil {
 
-    public String encrypt(String word) throws ServiceException {
+    public String encrypt(String pass) throws ServiceException {
         try {
             byte[] ivBytes;
-            String password = "Hello";
+            String key = "Hello";
 
             /*you can give whatever you want for password. This is for testing purpose*/
             SecureRandom random = new SecureRandom();
@@ -29,7 +29,7 @@ public class EncryptionUtil {
 
             // Derive the key
             SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
-            PBEKeySpec spec = new PBEKeySpec(password.toCharArray(), saltBytes, 65556, 256);
+            PBEKeySpec spec = new PBEKeySpec(key.toCharArray(), saltBytes, 65556, 256);
             SecretKey secretKey = factory.generateSecret(spec);
             SecretKeySpec secret = new SecretKeySpec(secretKey.getEncoded(), "AES");
 
@@ -38,7 +38,7 @@ public class EncryptionUtil {
             cipher.init(Cipher.ENCRYPT_MODE, secret);
             AlgorithmParameters params = cipher.getParameters();
             ivBytes = params.getParameterSpec(IvParameterSpec.class).getIV();
-            byte[] encryptedTextBytes = cipher.doFinal(word.getBytes(StandardCharsets.UTF_8));
+            byte[] encryptedTextBytes = cipher.doFinal(pass.getBytes(StandardCharsets.UTF_8));
             //prepend salt and vi
             byte[] buffer = new byte[saltBytes.length + ivBytes.length + encryptedTextBytes.length];
 
@@ -48,13 +48,13 @@ public class EncryptionUtil {
 
             return new Base64().encodeToString(buffer);
         } catch (Exception ex) {
-            throw new ServiceException("Unfortunately an exception occurred in the server.", ex);
+            throw new ServiceException(ex);
         }
     }
 
     @SuppressWarnings("static-access")
     public String decrypt(String encryptedText) throws Exception {
-        String password = "Hello";
+        String key = "Hello";
         Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
 
         //strip off the salt and iv
@@ -69,7 +69,7 @@ public class EncryptionUtil {
 
         // Deriving the key
         SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
-        PBEKeySpec spec = new PBEKeySpec(password.toCharArray(), saltBytes, 65556, 256);
+        PBEKeySpec spec = new PBEKeySpec(key.toCharArray(), saltBytes, 65556, 256);
         SecretKey secretKey = factory.generateSecret(spec);
         SecretKeySpec secret = new SecretKeySpec(secretKey.getEncoded(), "AES");
         cipher.init(Cipher.DECRYPT_MODE, secret, new IvParameterSpec(ivBytes1));
@@ -88,7 +88,7 @@ public class EncryptionUtil {
 
     public static void main(String[] args) throws Exception {
         EncryptionUtil en = new EncryptionUtil();
-        String encryptedWord = en.encrypt("Test");
+        String encryptedWord = en.encrypt("MyNameIsMehdi");
         System.out.println("Encrypted word is : " + encryptedWord);
         System.out.println("Decrypted word is : " + en.decrypt(encryptedWord));
     }

@@ -30,7 +30,7 @@ import static org.hamcrest.core.IsEqual.equalTo;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = BackendApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class UserControllerTest {
+public class UserControllerRestTmplTest {
 
     @Autowired
     private TestRestTemplate restTemplate;

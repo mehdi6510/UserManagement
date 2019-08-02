@@ -34,7 +34,7 @@ import static org.hamcrest.core.IsEqual.equalTo;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class UserServiceTest {
+public class UserServiceMockitoTest {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 

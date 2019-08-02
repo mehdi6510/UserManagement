@@ -2,8 +2,8 @@ package com.afifi.usermng;
 
 import com.afifi.usermng.app.AppSmokeTest;
 import com.afifi.usermng.controller.UserControllerMockMVCTest;
-import com.afifi.usermng.controller.UserControllerTest;
-import com.afifi.usermng.service.UserServiceTest;
+import com.afifi.usermng.controller.UserControllerRestTmplTest;
+import com.afifi.usermng.service.UserServiceMockitoTest;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
@@ -11,9 +11,9 @@ import org.junit.runners.Suite.SuiteClasses;
 @RunWith(Suite.class)
 @SuiteClasses({
         AppSmokeTest.class,
-        UserControllerTest.class,
+        UserControllerRestTmplTest.class,
         UserControllerMockMVCTest.class,
-        UserServiceTest.class
+        UserServiceMockitoTest.class
 })
 public class AllTests {
 }

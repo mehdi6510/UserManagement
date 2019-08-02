@@ -39,7 +39,7 @@ public class ServiceExceptionHandlingAspect {
                 || ex instanceof ServiceException) {
             throw ex;
         } else {
-            throw new ServiceException("Unfortunately an exception occurred in the server.", ex);
+            throw new ServiceException(ex);
         }
     }
 
