@@ -49,7 +49,6 @@ public class UserControllerMockMVCTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.id").exists());
     }
 
-
     @Test
     public void test2GetUserById() throws Exception {
         mvc.perform(MockMvcRequestBuilders
@@ -57,7 +56,10 @@ public class UserControllerMockMVCTest {
                 .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(1));
+                .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(1))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.firstName").value("Mehdi-1"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.lastName").value("Afifi-1"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.username").value("username-1"));
     }
 
     @Test
@@ -100,6 +102,5 @@ public class UserControllerMockMVCTest {
             throw new RuntimeException(e);
         }
     }
-
 
 }
