@@ -5,7 +5,6 @@ import com.afifi.usermng.model.User;
 import com.afifi.usermng.model.mapper.Mapper;
 import com.afifi.usermng.repository.UserRepository;
 import com.afifi.usermng.service.UserService;
-import com.afifi.usermng.util.EncryptionUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -24,11 +23,9 @@ public class UserServiceImpl implements UserService {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
     private UserRepository userRepository;
     private Mapper mapper;
-    private EncryptionUtil encryptionUtil;
 
-    public UserServiceImpl(UserRepository userRepository, EncryptionUtil encryptionUtil, Mapper mapper) {
+    public UserServiceImpl(UserRepository userRepository, Mapper mapper) {
         this.userRepository = userRepository;
-        this.encryptionUtil = encryptionUtil;
         this.mapper = mapper;
     }
 
@@ -56,8 +53,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public User createUser(User user) {
         logger.info("Try to save user : {}", user);
-
-        user.setPassword(encryptionUtil.encrypt(user.getPassword()));
         userRepository.save(user);
         logger.info("User saved : {}", user);
         return user;

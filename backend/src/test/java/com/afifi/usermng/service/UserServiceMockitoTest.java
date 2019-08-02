@@ -5,7 +5,6 @@ import com.afifi.usermng.model.User;
 import com.afifi.usermng.model.mapper.Mapper;
 import com.afifi.usermng.repository.UserRepository;
 import com.afifi.usermng.service.impl.UserServiceImpl;
-import com.afifi.usermng.util.EncryptionUtil;
 import junit.framework.TestCase;
 import org.junit.*;
 import org.junit.jupiter.api.BeforeEach;
@@ -42,13 +41,10 @@ public class UserServiceMockitoTest {
     private Mapper mapper = new Mapper();
 
     @Mock
-    private EncryptionUtil encryptionUtil;
-
-    @Mock
     private UserRepository userRepository;
 
     @InjectMocks
-    private UserService userService = new UserServiceImpl(userRepository, encryptionUtil, mapper);
+    private UserService userService = new UserServiceImpl(userRepository, mapper);
 
     @BeforeClass
     public static void setUpBeforeClass() {
@@ -111,7 +107,6 @@ public class UserServiceMockitoTest {
 
     @Test
     public void test3CreateUser() {
-        Mockito.when(encryptionUtil.encrypt("password")).thenReturn("encryptedPassword");
         Mockito.when(userRepository.save(new User())).thenReturn(new User("Mr", "Ali", "Afifi", "username", "password",
                 "a@b.com", "09128971245", Boolean.TRUE));
 
