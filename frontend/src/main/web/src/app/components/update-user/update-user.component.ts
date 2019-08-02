@@ -11,7 +11,6 @@ export class UpdateUserComponent implements OnInit {
 
   id: number;
   user: User;
-  confirmPassword: string;
   submitted = false;
 
   constructor(private route: ActivatedRoute, private router: Router, private userService: UsersService,) {

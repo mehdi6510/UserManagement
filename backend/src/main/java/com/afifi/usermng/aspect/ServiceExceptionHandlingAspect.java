@@ -34,7 +34,9 @@ public class ServiceExceptionHandlingAspect {
      */
     @AfterThrowing(pointcut = "springServicePointcut()", throwing = "ex")
     public void AfterThrowing(JoinPoint joinPoint, Throwable ex) throws Throwable {
-        if (ex instanceof ResourceNotFoundException || ex instanceof MethodArgumentNotValidException) {
+        if (ex instanceof ResourceNotFoundException
+                || ex instanceof MethodArgumentNotValidException
+                || ex instanceof ServiceException) {
             throw ex;
         } else {
             throw new ServiceException("Unfortunately an exception occurred in the server.", ex);

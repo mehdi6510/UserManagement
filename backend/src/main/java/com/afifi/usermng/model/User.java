@@ -26,10 +26,10 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
 
     @NotNull(message = "Title is mandatory")
-    @Size(min = 2, max = 5, message = "Title should have atleast 2 characters")
+    @Size(min = 2, max = 5, message = "Title should have atleast 2 and characters")
     private String title;
 
     @NotNull(message = "First Name is mandatory")
@@ -45,7 +45,7 @@ public class User {
     private String username;
 
     @NotNull(message = "Password is mandatory")
-    @Size(min = 6, max = 25, message = "Password should have atleast 6 characters")
+    @Size(min = 6, message = "Password should have atleast 6 characters")
     private String password;
 
     @NotNull(message = "Email is mandatory")
@@ -75,33 +75,28 @@ public class User {
     public User() {
     }
 
-    public User(@NotNull(message = "Title is mandatory") @Size(min = 2, max = 5, message = "Title should have atleast 2 characters") String title,
-                @NotNull(message = "First Name is mandatory") @Size(min = 2, max = 50, message = "First Name should have atleast 2 characters") String firstName,
-                @NotNull(message = "Last Name is mandatory") @Size(min = 2, max = 50, message = "Last Name should have atleast 2 characters") String lastName,
-                @NotNull(message = "Username is mandatory") @Size(min = 6, max = 25, message = "Username should have atleast 6 characters") String username,
-                @NotNull(message = "Password is mandatory") @Size(min = 6, max = 25, message = "Password should have atleast 6 characters") String password,
-                @NotNull(message = "Email is mandatory") @Size(min = 3, max = 100, message = "Email should have atleast 3 characters")
-                @Email(message = "Email has invalid format") String email,
-                @Size(max = 11, message = "Cell Phone must be null or have atleast 11 characters") String cellPhone,
-                boolean isAdmin) {
+    public User(Long id, String title, String firstName, String lastName, String username, String password,
+                String email, String cellPhone, boolean isAdmin) {
+        this(title, firstName, lastName, username, password, email, cellPhone, isAdmin);
+        this.id = id;
+    }
+
+    public User(String title, String firstName, String lastName, String username, String password,
+                String email, String cellPhone, boolean isAdmin) {
         this.title = title;
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
         this.password = password;
         this.email = email;
-        this.cellPhone = cellPhone;
         this.isAdmin = isAdmin;
+        this.cellPhone = cellPhone;
     }
 
-    public User(@NotNull(message = "Title is mandatory") @Size(min = 2, message = "Title should have atleast 2 characters") String title,
-                @NotNull(message = "First Name is mandatory") @Size(min = 2, message = "First Name should have atleast 2 characters") String firstName,
-                @NotNull(message = "Last Name is mandatory") @Size(min = 2, message = "Last Name should have atleast 2 characters") String lastName,
-                @NotNull(message = "Username is mandatory") @Size(min = 6, message = "Username should have atleast 6 characters") String username,
-                @NotNull(message = "Password is mandatory") @Size(min = 6, message = "Password should have atleast 6 characters") String password,
-                @NotNull(message = "Email is mandatory") @Size(min = 3, message = "Email should have atleast 3 characters") @Email String email,
-                @Size(max = 11, message = "Cell Phone must be null or have atleast 11 characters") String cellPhone,
-                boolean isAdmin, String createdBy, Date createdDate, String lastModifiedBy, Date lastModifiedDate) {
+    public User(Long id, String title, String firstName, String lastName, String username, String password, String email,
+                String cellPhone, boolean isAdmin, String createdBy, Date createdDate,
+                String lastModifiedBy, Date lastModifiedDate) {
+        this.id = id;
         this.title = title;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -116,31 +111,11 @@ public class User {
         this.lastModifiedDate = lastModifiedDate;
     }
 
-    public User(long id,
-                @NotNull(message = "Title is mandatory") @Size(min = 2, message = "Title should have atleast 2 characters") String title,
-                @NotNull(message = "First Name is mandatory") @Size(min = 2, message = "First Name should have atleast 2 characters") String firstName,
-                @NotNull(message = "Last Name is mandatory") @Size(min = 2, message = "Last Name should have atleast 2 characters") String lastName,
-                @NotNull(message = "Username is mandatory") @Size(min = 6, message = "Username should have atleast 6 characters") String username,
-                @NotNull(message = "Password is mandatory") @Size(min = 6, message = "Password should have atleast 6 characters") String password,
-                @NotNull(message = "Email is mandatory") @Size(min = 3, message = "Email should have atleast 3 characters") @Email String email,
-                boolean isAdmin,
-                @Size(max = 11, message = "Cell Phone must be null or have atleast 11 characters") String cellPhone) {
-        this.id = id;
-        this.title = title;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.username = username;
-        this.password = password;
-        this.email = email;
-        this.isAdmin = isAdmin;
-        this.cellPhone = cellPhone;
-    }
-
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -265,7 +240,7 @@ public class User {
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
         return isAdmin == user.isAdmin &&
-                id == user.id &&
+                id.equals(user.id) &&
                 title.equals(user.title) &&
                 firstName.equals(user.firstName) &&
                 lastName.equals(user.lastName) &&

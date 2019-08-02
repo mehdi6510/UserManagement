@@ -1,5 +1,6 @@
-package com.afifi.usermng;
+package com.afifi.usermng.controller;
 
+import com.afifi.usermng.BackendApplication;
 import com.afifi.usermng.model.User;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -29,7 +30,7 @@ import static org.hamcrest.core.IsEqual.equalTo;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = BackendApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class ControllerIntegrationTest {
+public class UserControllerTest {
 
     @Autowired
     private TestRestTemplate restTemplate;
@@ -100,7 +101,6 @@ public class ControllerIntegrationTest {
         HttpHeaders headers = new HttpHeaders();
         HttpEntity<User> entity = new HttpEntity<>(userDetails, headers);
         ResponseEntity<User> putResponse = restTemplate.exchange(getRootUrl() + "/users/" + id, HttpMethod.PUT, entity, User.class);
-        restTemplate.put(getRootUrl() + "/users/" + id, userDetails);
 
         assertNotNull(putResponse);
         assertNotNull(putResponse.getBody());

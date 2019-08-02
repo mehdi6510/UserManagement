@@ -28,15 +28,15 @@ public class Mapper {
 //        return apiBeanMapper;
 //    }
 
-    public void fillUpdatingDetails(User user, User userDetails) {
-        user.setTitle(userDetails.getTitle());
-        user.setFirstName(userDetails.getFirstName());
-        user.setLastName(userDetails.getLastName());
-        user.setUsername(userDetails.getUsername());
-        user.setPassword(userDetails.getPassword());
-        user.setCellPhone(userDetails.getCellPhone());
-        user.setEmail(userDetails.getEmail());
-        user.setIsAdmin(userDetails.getIsAdmin());
+    public void fillUpdatingDetails(User oldUser, User userNewDetails) {
+        oldUser.setTitle(userNewDetails.getTitle());
+        oldUser.setFirstName(userNewDetails.getFirstName());
+        oldUser.setLastName(userNewDetails.getLastName());
+        oldUser.setUsername(userNewDetails.getUsername());
+        oldUser.setPassword(userNewDetails.getPassword());
+        oldUser.setCellPhone(userNewDetails.getCellPhone());
+        oldUser.setEmail(userNewDetails.getEmail());
+        oldUser.setIsAdmin(userNewDetails.getIsAdmin());
     }
 
 }
