@@ -1,12 +1,36 @@
 # User Management
 
-This is a sample CRUD project for user management which has been written with Java 8 and Spring Boot and H2 in memory
+This is a sample CRUD project for user management which has been written with Java 8 and Spring Boot 2 and H2 in memory
 database in backend and Angular 8 in the frontend.
 
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development 
 and testing purposes. See deployment for notes on how to deploy the project on a live system.
+
+### Capabilities
+
+This application is doing four main operation for simple user management such as:
+
+```
+* Show all users list.
+* show details information for an user
+* Create new user
+* Update user detail
+* Delete user 
+```
+
+### Services and rest endpoints:
+
+This app contains only one controller with five rest endpoints that ui call them and interact with server through them.
+
+```
+* Get list of all users - GET (http://localhost:8080/usermanagement/api/users)
+* Get one user detail - GET (http://localhost:8080/usermanagement/api/users/{id})
+* Create user - POST (http://localhost:8080/usermanagement/api/users)
+* Update user - PUT (http://localhost:8080/usermanagement/api/users/{id})
+* Delete user - DELETE (http://localhost:8080/usermanagement/api/users/{id})
+```
 
 ### Prerequisites
 
@@ -33,37 +57,38 @@ or run maven command in the project directory:
 This command prepare the project backend dependencies and run npm for frontend dependencies,
 It run the following command for preparing all Angular library and modules 
 
-```
-npm install
-```
+#### `npm install`
 
 In the IDEA you should set Run\Debug configuration to run the Backend. for this you should
 specify Main class and classpath of this module and JRE and for running frontend you should
 in it's directory path run (ng serve) command or click on the start script in package.json file.
 
-For Run\Debug Configuration dev server:
+##### For Run\Debug Configuration dev server:
 
 ```
-Main Class: com.afifi.usermng.BackendApplication.java
-Working directory: for example .\x\y\z\UserManagement
-Classpath of module: backend
-JRE: JAVA 1.8 SDK
+* Main Class: com.afifi.usermng.BackendApplication.java
+* Working directory: for example .\x\y\z\UserManagement
+* Classpath of module: backend
+* JRE: JAVA 1.8 SDK
 ```
 
-For frontend (UI) dev server:
+##### For frontend (UI) dev server:
 ```
 Run this script in package.json file:
+  
   "scripts": {
     "start": "ng serve",
     ...
   }
   
 or in (\frontend\src\main\web) directory run this command:
+
 ng serve
 ```
 
-For running on production mode after you run maven clean install, The jar file of project has be prepared and
-you can in the backend\target directory run this command.
+##### For running on production mode:
+After you run maven clean install, The jar file of project has be prepared and
+you can in the `.\backend\target` directory run this command.
 
 ```
 java -jar usermanagement.jar
@@ -113,6 +138,18 @@ java -jar .\x\y\UserManagement\backend\target\usermanagement.jar
 ## Built With
 
 * [Maven](https://maven.apache.org/) - Dependency and Build Management
+
+## Version
+
+The version of this app:
+
+#### `1.0`
+
+## Release Date
+
+The planned date to release this application is:
+
+#### `2019-08-12`
 
 ## Authors
 
