@@ -1,7 +1,7 @@
 # User Management
 
-This is a sample CRUD project for user management which has been written with java 8 and Spring Boot and H2 database
-in backend and Angular 8 in the frontend.
+This is a sample CRUD project for user management which has been written with Java 8 and Spring Boot and H2 in memory
+database in backend and Angular 8 in the frontend.
 
 ## Getting Started
 
@@ -10,80 +10,116 @@ and testing purposes. See deployment for notes on how to deploy the project on a
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+* [Java SE 8](https://www.oracle.com/technetwork/java/javase/downloads/) - Java SE Development Kit 8 (JDK 1.8)
+* [Apache Maven](https://maven.apache.org/) - Dependency Management (Maven 3.3+)
+* [Node.js](https://nodejs.org/en/) - Node.js JavaScript runtime (for example 12.6.0)
+
+You should do these steps:
 
 ```
-Give examples
+* Install JDK and set JAVA_HOME on your system
+* Install Node.js
+* Copy and extract Apache Maven in a directory and set MAVEN_HOME on your system
 ```
 
 ### Installing
 
-A step by step series of examples that tell you how to get a development env running
+At first configure JDK and also Apache Maven in your idea.
+Then you can get a clone of this project and run maven clean install in your idea 
+or run maven command in the project directory: 
 
-Say what the step will be
+#### `mvn clean install`
+
+This command prepare the project backend dependencies and run npm for frontend dependencies,
+It run the following command for preparing all Angular library and modules 
 
 ```
-Give the example
+npm install
 ```
 
-And repeat
+In the IDEA you should set Run\Debug configuration to run the Backend. for this you should
+specify Main class and classpath of this module and JRE and for running frontend you should
+in it's directory path run (ng serve) command or click on the start script in package.json file.
+
+For Run\Debug Configuration dev server:
 
 ```
-until finished
+Main Class: com.afifi.usermng.BackendApplication.java
+Working directory: for example .\x\y\z\UserManagement
+Classpath of module: backend
+JRE: JAVA 1.8 SDK
 ```
 
-End with an example of getting some data out of the system or using it for a little demo
+For frontend (UI) dev server:
+```
+Run this script in package.json file:
+  "scripts": {
+    "start": "ng serve",
+    ...
+  }
+  
+or in (\frontend\src\main\web) directory run this command:
+ng serve
+```
+
+For running on production mode after you run maven clean install, The jar file of project has be prepared and
+you can in the backend\target directory run this command.
+
+```
+java -jar usermanagement.jar
+```
+
+The jar file contains embeded Apache Tomcat web server and serve the http requests on port 8080.
+
+## Dealing with the application
+
+If you run app on dev mode ,you can use the application with this url:
+
+```
+http://localhost:4200/
+```
+
+and if run it on production mode, enter the following url in browser:
+
+```
+http://localhost:8080/
+```
 
 ## Running the tests
 
-Explain how to run the automated tests for this system
+Testing the application might with two way, First running the class AllTests.java. It is a suite test and run all other
+unit tests classes. Another way is running maven clean install either in your idea or in cmd or linux terminal.
 
 ### Break down into end to end tests
 
-Explain what these tests test and why
+These tests test all method in service and controller class. This test uses MockMVC and RestTemplate for testing the rest
+endpoints in the controller class and Mockito for mocking repository for testing methods in service class.If you run
+mvn clean install, the results of tests show like below:
 
 ```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 34, Failures: 0, Errors: 0, Skipped: 0
 ```
 
 ## Deployment
 
-Add additional notes about how to deploy this on a live system
+For deploying this app, it is enough to run the jar file in a machine:
+
+```
+java -jar .\x\y\UserManagement\backend\target\usermanagement.jar
+```
 
 ## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+* [Maven](https://maven.apache.org/) - Dependency and Build Management
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+* **Mehdi Afifi** - [mehdi6510](https://github.com/mehdi6510)
 
 ## Acknowledgments
 
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
+* This is sample crud app and you can expand and complete it and learn
+* to code and bootstrap an application with Spring Boot 2 and Angular 8.
+* Thanks.

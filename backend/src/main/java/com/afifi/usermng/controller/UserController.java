@@ -53,13 +53,4 @@ public class UserController {
         return response;
     }
 
-    /** Only for using in tests */
-    @DeleteMapping(value = "/users")
-    public Map<String, Boolean> deleteAllUser() {
-        userService.deleteAllUser();
-        Map<String, Boolean> response = new HashMap<>();
-        response.put("deleted", Boolean.TRUE);
-        return response;
-    }
-
 }

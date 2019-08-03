@@ -17,5 +17,4 @@ public interface UserService {
 
     void deleteUser(Long userId) throws ResourceNotFoundException;
 
-    void deleteAllUser();
 }

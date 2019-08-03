@@ -9,10 +9,8 @@
     </appender>
 
     <!-- custom logging levels -->
-    <!-- custom logging levels -->
     <logger name="com.afifi.usermng" level="DEBUG"/>
     <logger name="org.springframework" level="WARN"/>
-    <!--<logger name="org.springframework.data" level="DEBUG"/>-->
     <logger name="org.hibernate" level="WARN"/>
     <logger name="org.apache" level="WARN"/>
 

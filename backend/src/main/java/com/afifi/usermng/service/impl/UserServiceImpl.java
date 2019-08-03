@@ -83,11 +83,4 @@ public class UserServiceImpl implements UserService {
         logger.info("User deleted. Removing Date : {}", new Date());
     }
 
-    @Override
-    public void deleteAllUser() {
-        logger.info("Try to delete all users.");
-        userRepository.deleteAll();
-        logger.info("User deleted. Removing Date : {}", new Date());
-    }
-
 }
