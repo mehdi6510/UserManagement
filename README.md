@@ -25,8 +25,8 @@ This application is doing four main operation for simple user management such as
 This app contains only one controller with five rest endpoints that ui call them and interact with server through them.
 
 ```
-* Get list of all users - GET (http://localhost:8080/usermanagement/api/users)
-* Get one user detail - GET (http://localhost:8080/usermanagement/api/users/{id})
+* Get all users - GET (http://localhost:8080/usermanagement/api/users)
+* Get an user - GET (http://localhost:8080/usermanagement/api/users/{id})
 * Create user - POST (http://localhost:8080/usermanagement/api/users)
 * Update user - PUT (http://localhost:8080/usermanagement/api/users/{id})
 * Delete user - DELETE (http://localhost:8080/usermanagement/api/users/{id})
