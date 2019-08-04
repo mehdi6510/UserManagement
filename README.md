@@ -1,4 +1,4 @@
-# User Management
+# Simple User Management
 
 This is a sample CRUD project for user management which has been written with Java 8 and Spring Boot 2 and H2 in memory
 database in backend and Angular 8 in the frontend.
@@ -14,7 +14,7 @@ This application is doing four main operation for simple user management such as
 
 ```
 * Show all users list.
-* show details information for an user
+* show details information for one user
 * Create new user
 * Update user detail
 * Delete user 
