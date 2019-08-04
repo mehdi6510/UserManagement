@@ -19,16 +19,16 @@ and testing purposes. See deployment for notes on how to deploy the project on a
 This application is doing four main operation for simple user management such as:
 
 ```
-* Show all users list.
-* show details information for one user
+* Show users list.
+* show details of one user
 * Create new user
-* Update user detail
+* Update user
 * Delete user 
 ```
 
 ### Services and rest endpoints:
 
-This app contains only one controller with five rest endpoints that ui call them and interact with server through them.
+This app contains only one controller with five rest endpoints that ui interact with server through them.
 
 ```
 * Get all users - GET (http://localhost:8080/usermanagement/api/users)
@@ -56,20 +56,20 @@ You should do these steps:
 
 At first configure JDK and also Apache Maven in your idea.
 Then you can get a clone of this project and run maven clean install in your idea 
-or run maven command in the project directory: 
+or run following maven command in project directory: 
 
 #### `mvn clean install`
 
-This command prepare the project backend dependencies and run npm for frontend dependencies,
+This command prepare the project's back-end dependencies and run npm for front-end dependencies,
 It run the following command for preparing all Angular library and modules 
 
 #### `npm install`
 
-In the IDEA you should set Run\Debug configuration to run the Backend. for this you should
-specify Main class and classpath of this module and JRE and for running frontend you should
-in it's directory path run (ng serve) command or click on the start script in package.json file.
+In the IDEA you should set Run\Debug configuration to run server side. You should
+specify main class and classpath of this module and JRE and for running front-end you should
+run (ng serve) command in it's directory path or click on the start script in package.json file.
 
-##### For Run\Debug Configuration dev server:
+##### For Run\Debug Configuration development server:
 
 ```
 * Main Class: com.afifi.usermng.BackendApplication.java
@@ -78,7 +78,7 @@ in it's directory path run (ng serve) command or click on the start script in pa
 * JRE: JAVA 1.8 SDK
 ```
 
-##### For frontend (UI) dev server:
+##### For running front-end (UI) on development mode:
 ```
 Run this script in package.json file:
   
@@ -94,7 +94,7 @@ ng serve
 
 ##### For running on production mode:
 After you run maven clean install, The jar file of project has be prepared and
-you can in the `.\backend\target` directory run this command.
+you can in `.\backend\target` directory run this command.
 
 ```
 java -jar usermanagement.jar
@@ -102,9 +102,10 @@ java -jar usermanagement.jar
 
 The jar file contains embeded Apache Tomcat web server and serve the http requests on port 8080.
 
+
 ## Interacting with the application
 
-If you run app on dev mode ,you can use the application with this url:
+If you run app on development mode ,you can use the application with this url:
 
 ```
 http://localhost:4200/
@@ -123,9 +124,9 @@ unit tests classes. Another way is running maven clean install either in your id
 
 ### Break down into end to end tests
 
-These tests verify all method in service and controller class. Integration test cases uses MockMVC and RestTemplate for testing the rest
-endpoints in controller class and Mockito for testing methods in service class.If you run
-mvn clean install, the results of tests show like below:
+These tests verify all method in service and controller class. Integration test cases uses MockMVC and RestTemplate for 
+testing the rest endpoints in controller class and Mockito for testing methods in service class.
+If you run mvn clean install, the results of tests show like below:
 
 ```
 [INFO] Results:
@@ -135,7 +136,7 @@ mvn clean install, the results of tests show like below:
 
 ## Deployment
 
-For deploying this app, it is enough to run the jar file in a machine:
+For deploying this app, it is enough to run the jar file in a machine with following command:
 
 ```
 java -jar .\x\y\UserManagement\backend\target\usermanagement.jar
@@ -163,6 +164,5 @@ The planned date to release this application is:
 
 ## Acknowledgments
 
-This is sample CRUD app and you can expand it to learn how to bootstrap an application with Spring Boot2 and Angular8.
-
-##### Best Regards
+This is sample CRUD app and you can learn how to bootstrap an application with Spring Boot 2 and Angular 8.
+* Best Regards
