@@ -61,7 +61,7 @@ or run following maven command in project directory:
 #### `mvn clean install`
 
 This command prepare the project's back-end dependencies and run npm for front-end dependencies,
-It run the following command for preparing all Angular library and modules 
+It run following command for preparing all Angular library and modules 
 
 #### `npm install`
 
@@ -111,13 +111,13 @@ If you run app on development mode ,you can use the application with this url:
 http://localhost:4200/
 ```
 
-and if run it on production mode, enter the following url in browser:
+and if run it on production mode, enter following url in browser:
 
 ```
 http://localhost:8080/
 ```
 
-## Running the tests
+## Running tests
 
 Testing can be done in two way, First running the class AllTests.java. It is a suite test and run all other
 unit tests classes. Another way is running maven clean install either in your idea or in cmd or linux terminal.
