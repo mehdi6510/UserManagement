@@ -102,7 +102,7 @@ java -jar usermanagement.jar
 
 The jar file contains embeded Apache Tomcat web server and serve the http requests on port 8080.
 
-## Dealing with the application
+## Interacting with the application
 
 If you run app on dev mode ,you can use the application with this url:
 
@@ -118,13 +118,13 @@ http://localhost:8080/
 
 ## Running the tests
 
-Testing the application might with two way, First running the class AllTests.java. It is a suite test and run all other
+Testing can be done in two way, First running the class AllTests.java. It is a suite test and run all other
 unit tests classes. Another way is running maven clean install either in your idea or in cmd or linux terminal.
 
 ### Break down into end to end tests
 
-These tests test all method in service and controller class. This test uses MockMVC and RestTemplate for testing the rest
-endpoints in the controller class and Mockito for mocking repository for testing methods in service class.If you run
+These tests verify all method in service and controller class. Integration test cases uses MockMVC and RestTemplate for testing the rest
+endpoints in controller class and Mockito for testing methods in service class.If you run
 mvn clean install, the results of tests show like below:
 
 ```
@@ -163,6 +163,6 @@ The planned date to release this application is:
 
 ## Acknowledgments
 
-This is sample CRUD app and you can expand it to learn how to bootstrap an application with Spring Boot 2 and Angular 8.
+This is sample CRUD app and you can expand it to learn how to bootstrap an application with Spring Boot2 and Angular8.
 
 ##### Best Regards
