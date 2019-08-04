@@ -1,7 +1,13 @@
 # Simple User Management
 
-This is a sample CRUD project for user management which has been written with Java 8 and Spring Boot 2 and H2 in memory
-database in backend and Angular 8 in the frontend.
+This is a sample CRUD project for user management which has been developed with these technologies.
+
+```
+* Java 8
+* Spring Boot 2
+* H2 in memory database
+* Angular 8 
+```
 
 ## Getting Started
 
@@ -157,7 +163,6 @@ The planned date to release this application is:
 
 ## Acknowledgments
 
-* This is sample crud app and you can expand and complete it and learn
-* to code and bootstrap an application with Spring Boot 2 and Angular 8.
-* Thanks.
-<a href='#'>please review my works here</a>
+This is sample CRUD app and you can expand it to learn how to bootstrap an application with Spring Boot 2 and Angular 8.
+
+##### Best Regards
