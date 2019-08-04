@@ -36,7 +36,7 @@ public class UserServiceImpl implements UserService {
                 new ResourceNotFoundException("User not found for this id :: " + userId));
 
         logger.info("User loaded. User id : {}", userId);
-        logger.info("Loaded user detail: {}", user);
+        logger.debug("Loaded user detail: {}", user);
         return user;
     }
 
@@ -46,7 +46,7 @@ public class UserServiceImpl implements UserService {
         List<User> users = userRepository.findAll();
 
         logger.info("Users has been loaded. Size of result : {}", users.size());
-        logger.info("Loaded users detail: {}", users);
+        logger.debug("Loaded users detail: {}", users);
         return users;
     }
 
