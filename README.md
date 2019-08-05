@@ -11,8 +11,8 @@ This is a sample CRUD project for user management which has been developed with 
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development 
-and testing purposes. See deployment for notes on how to deploy the project on a live system.
+These instructions will get you a copy of the project up and running on your local machine for develop and test purposes.  
+See deployment for notes on how to deploy the project on a live system.
 
 ### Capabilities
 
@@ -20,15 +20,15 @@ This application is doing four main operation for simple user management such as
 
 ```
 * Show users list.
-* show details of one user
+* Show details of one user
 * Create new user
 * Update user
 * Delete user 
 ```
 
-### Services and rest endpoints:
+### Services And Rest Endpoints:
 
-This app contains only one controller with five rest endpoints that ui interact with server through them.
+This app contains only one controller with five rest endpoints that UI interact with server through them.
 
 ```
 * Get all users - GET (http://localhost:8080/usermanagement/api/users)
@@ -69,7 +69,7 @@ In the IDEA you should set Run\Debug configuration to run server side. You shoul
 specify main class and classpath of this module and JRE and for running front-end you should
 run (ng serve) command in it's directory path or click on the start script in package.json file.
 
-##### For Run\Debug Configuration development server:
+##### For Run\Debug Configuration Development Server:
 
 ```
 * Main Class: com.afifi.usermng.BackendApplication.java
@@ -78,7 +78,7 @@ run (ng serve) command in it's directory path or click on the start script in pa
 * JRE: JAVA 1.8 SDK
 ```
 
-##### For running front-end (UI) on development mode:
+##### For Running Front-End (UI) on Development Mode:
 ```
 Run this script in package.json file:
   
@@ -92,18 +92,18 @@ or in (\frontend\src\main\web) directory run this command:
 ng serve
 ```
 
-##### For running on production mode:
-After you run maven clean install, The jar file of project has be prepared and
+##### For Running on Production Mode:
+After you run the Maven clean install, The jar file of project has be prepared and
 you can in `.\backend\target` directory run this command.
 
-```
+```bash
 java -jar usermanagement.jar
 ```
 
 The jar file contains embeded Apache Tomcat web server and serve the http requests on port 8080.
 
 
-## Interacting with the application
+## Interacting with The Application
 
 If you run app on development mode ,you can use the application with this url:
 
@@ -117,12 +117,12 @@ and if run it on production mode, enter following url in browser:
 http://localhost:8080/
 ```
 
-## Running tests
+## Running Tests
 
 Testing can be done in two way, First running the class AllTests.java. It is a suite test and run all other
 unit tests classes. Another way is running maven clean install either in your idea or in cmd or linux terminal.
 
-### Break down into end to end tests
+### Break Down into End to End Tests
 
 These tests verify all method in service and controller class. Integration test cases uses MockMVC and RestTemplate for 
 testing the rest endpoints in controller class and Mockito for testing methods in service class.
@@ -138,7 +138,7 @@ If you run mvn clean install, the results of tests show like below:
 
 For deploying this app, it is enough to run the jar file in a machine with following command:
 
-```
+```bash
 java -jar .\x\y\UserManagement\backend\target\usermanagement.jar
 ```
 
