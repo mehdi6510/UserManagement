@@ -10,7 +10,6 @@ import {MustMatch} from "../../util/validation-util";
 })
 export class CreateUserComponent implements OnInit {
 
-  confirmPassword: string;
   registerForm: FormGroup;
   submitted = false;
   error: string = '';
